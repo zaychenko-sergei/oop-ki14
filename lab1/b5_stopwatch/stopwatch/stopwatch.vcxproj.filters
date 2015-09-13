@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Student Class">
+      <UniqueIdentifier>{53cd8d03-7f80-4e5f-9deb-d6fe075418fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Program">
+      <UniqueIdentifier>{726087f2-1149-4850-8be5-101115d5367f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{35bdeee9-922a-4f2e-a102-91df7236a6a4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\testslib.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\utils.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="stopwatch.hpp">
+      <Filter>Student Class</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stopwatch_test.cpp">
+      <Filter>Test Program</Filter>
+    </ClCompile>
+    <ClCompile Include="stopwatch.cpp">
+      <Filter>Student Class</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
