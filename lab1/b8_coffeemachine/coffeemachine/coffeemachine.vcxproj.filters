@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{f8433382-8c61-4419-a081-4fe114d59033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Student Class">
+      <UniqueIdentifier>{8dddad6b-3f88-4533-8fb1-3bf29669bff4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Program">
+      <UniqueIdentifier>{5407f08a-c3e8-40ea-aca7-b99743b7d9e0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\testslib.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\utils.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="coffeemachine.hpp">
+      <Filter>Student Class</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="coffeemachine.cpp">
+      <Filter>Student Class</Filter>
+    </ClCompile>
+    <ClCompile Include="coffeemachine_test.cpp">
+      <Filter>Test Program</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
