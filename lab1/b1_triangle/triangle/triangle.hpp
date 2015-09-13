@@ -1,4 +1,4 @@
-// (C) 2013-2014, Sergei Zaychenko, KNURE, Kharkiv, Ukraine
+// (C) 2013-2015, Sergei Zaychenko, KNURE, Kharkiv, Ukraine
 
 #ifndef _TRIANGLE_HPP_
 #define _TRIANGLE_HPP_

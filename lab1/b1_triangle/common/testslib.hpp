@@ -1,4 +1,4 @@
-// (C) 2013-2014, Sergei Zaychenko, KNURE, Kharkiv, Ukraine
+// (C) 2013-2015, Sergei Zaychenko, KNURE, Kharkiv, Ukraine
 
 #ifndef _TESTSLIB_HPP_
 #define _TESTSLIB_HPP_
