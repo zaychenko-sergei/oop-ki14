@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{b04a8c63-b9e0-4bbc-889c-fc952ba54248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Student Class">
+      <UniqueIdentifier>{ade97b20-56ab-465a-b03f-1d103fb86231}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Program">
+      <UniqueIdentifier>{284b8e4d-1a24-4b14-99a1-f838b1465ada}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\testslib.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="arithmetic_progression.hpp">
+      <Filter>Student Class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\utils.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="arithmetic_progression.cpp">
+      <Filter>Student Class</Filter>
+    </ClCompile>
+    <ClCompile Include="arithmetic_progression_test.cpp">
+      <Filter>Test Program</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
