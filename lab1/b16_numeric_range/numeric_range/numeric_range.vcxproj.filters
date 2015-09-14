@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Student Class">
+      <UniqueIdentifier>{5536d854-e730-4a32-a86f-67937c24bc7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Program">
+      <UniqueIdentifier>{2a5cc147-e8f4-4c8b-9335-bd07239edb0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{fc8c6b12-efa0-4ae5-923e-19482cafe0e5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\testslib.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\utils.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="numeric_range.hpp">
+      <Filter>Student Class</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="numeric_range.cpp">
+      <Filter>Student Class</Filter>
+    </ClCompile>
+    <ClCompile Include="numeric_range_test.cpp">
+      <Filter>Test Program</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
