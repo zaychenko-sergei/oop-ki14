@@ -1,0 +1,20 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "clipboard", "clipboard.vcxproj", "{643746BE-E506-4D3D-8388-197FAC863DB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{643746BE-E506-4D3D-8388-197FAC863DB1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{643746BE-E506-4D3D-8388-197FAC863DB1}.Debug|Win32.Build.0 = Debug|Win32
+		{643746BE-E506-4D3D-8388-197FAC863DB1}.Release|Win32.ActiveCfg = Release|Win32
+		{643746BE-E506-4D3D-8388-197FAC863DB1}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

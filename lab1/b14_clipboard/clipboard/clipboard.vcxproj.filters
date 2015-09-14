@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Student Class">
+      <UniqueIdentifier>{bcdc46ae-6248-4473-ab8e-2ec4c40a829f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Program">
+      <UniqueIdentifier>{30002090-57a0-4f64-8ff7-c7b5fec624a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{d0f6c764-34cf-4ed4-9930-db5fd56291fa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="clipboard_test.cpp">
+      <Filter>Test Program</Filter>
+    </ClCompile>
+    <ClCompile Include="clipboard.cpp">
+      <Filter>Student Class</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="clipboard.hpp">
+      <Filter>Student Class</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\testslib.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\utils.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
