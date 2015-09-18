@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Test Program">
+      <UniqueIdentifier>{854ab760-563f-4b12-bfdb-5181e86be0f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Student Class">
+      <UniqueIdentifier>{1f807a24-f550-4311-85a2-4fbb1b5b0c70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test Program\Utils">
+      <UniqueIdentifier>{1df7d051-135f-43be-8297-c14df8eae8ba}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\common\testslib.hpp">
+      <Filter>Test Program\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\common\utils.hpp">
+      <Filter>Test Program\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="bitset.hpp">
+      <Filter>Student Class</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="bitset.cpp">
+      <Filter>Student Class</Filter>
+    </ClCompile>
+    <ClCompile Include="bitset_test.cpp">
+      <Filter>Test Program</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
