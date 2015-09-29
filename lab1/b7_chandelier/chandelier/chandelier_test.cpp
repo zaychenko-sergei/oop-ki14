@@ -172,43 +172,45 @@ DECLARE_OOP_TEST( chandelier_test_get_set_power_mode )
 
 DECLARE_OOP_TEST( chandelier_test_get_total_power_simple )
 {
-	Chandelier c( 3 );
+	Chandelier c( 4 );
 	c.setSlotPower( 0, 20 );
 	c.setSlotPower( 1, 30 );
 	c.setSlotPower( 2, 10 );
+	c.setSlotPower( 3, 20 );
 
 	assert( c.getTotalPower() == 0 );
 	
 	c.setPowerMode( Chandelier::Power_Full );
-	assert( c.getTotalPower() == 60 );
+	assert( c.getTotalPower() == 80 ); // 20 + 30 + 10 + 20
 
 	c.setPowerMode( Chandelier::Power_Half );
-	assert( c.getTotalPower() == 30 );
+	assert( c.getTotalPower() == 50 ); // 20 + 30
 
 	c.setPowerMode( Chandelier::Power_Third );
-	assert( c.getTotalPower() == 20 );
+	assert( c.getTotalPower() == 20 ); // 20
 }
 
 
 /*****************************************************************************/
 
 
-DECLARE_OOP_TEST( chandelier_test_get_total_power_empty_slot )
+DECLARE_OOP_TEST( chandelier_test_get_total_power_empty_slots )
 {
-	Chandelier c( 3 );
+	Chandelier c( 5 );
 	c.setSlotPower( 0, 20 );
-	c.setSlotPower( 2, 10 );
+	c.setSlotPower( 1, 10 );
+	c.setSlotPower( 3, 30 );
 
 	assert( c.getTotalPower() == 0 );
 	
 	c.setPowerMode( Chandelier::Power_Full );
-	assert( c.getTotalPower() == 30 );
+	assert( c.getTotalPower() == 60 ); // 20 + 10 + 30
 
 	c.setPowerMode( Chandelier::Power_Half );
-	assert( c.getTotalPower() == 15 );
+	assert( c.getTotalPower() == 30 ); // 20 + 10
 
 	c.setPowerMode( Chandelier::Power_Third );
-	assert( c.getTotalPower() == 10 );
+	assert( c.getTotalPower() == 20 );
 }
 
 
