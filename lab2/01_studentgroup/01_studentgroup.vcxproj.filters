@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="academicgroup.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="date.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="student.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="studyform.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.hpp">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Application</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="academicgroup.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="date.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="student.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{2715b94e-d9f6-4270-8d37-3544a2727554}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{d2cec0f3-7c3f-472d-952b-2d2cb2c93596}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{23405269-ce78-4ec4-8e6f-d4c7cf874f04}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
