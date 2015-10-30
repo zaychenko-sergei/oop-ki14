@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="movie.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="movieactor.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="utils.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{189c222f-0c34-41f9-9e92-c33a174539d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{4a7ee6ff-68a4-4e27-938c-f05d0f410511}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{b0792615-bbde-4449-8d49-6c09e7da81a5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="movie.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="movieactor.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.hpp">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
