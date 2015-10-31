@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{7941d4d1-5a6d-45ef-b4ad-c9976b5c2ea7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{5a1e9138-cba5-4050-b305-cc3309bae724}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{d97e7555-f8b5-455b-b44e-706dc5e9e1ab}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="call.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="contact.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="contact.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="call.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="calltype.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
