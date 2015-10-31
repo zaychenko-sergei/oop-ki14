@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="participant.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="meeting.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{165095c1-e4fb-4f74-a9ba-e4da42faea26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{737df458-1eb3-419f-bdc2-7aff940e6781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{32ee72a2-93b6-48a2-8587-330990eb6daa}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="participant.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="meeting.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="position.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
