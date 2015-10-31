@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="organization.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="payment.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="datetime.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="date.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{e88f1ec7-1dbb-4390-bc38-ae90cb0dacd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{d748fdd2-daca-4a53-94ff-5e59fae088be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{eb2ee0c0-0719-472a-87ea-a00fae0b16e0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="payment.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="organization.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="datetime.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="date.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
