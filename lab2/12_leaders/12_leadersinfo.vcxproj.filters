@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{1133a66e-f009-4fa4-9c29-286648d2b1b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{40fe9409-34f6-4bec-816a-3bdc457cda30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{c9a50e48-c0ae-469c-9380-653b7f41a063}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="leader.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="country.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="historyperiod.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.hpp">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="leader.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="country.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="historyperiod.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Application</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
