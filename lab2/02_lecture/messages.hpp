@@ -11,6 +11,7 @@ namespace Messages
 	const char * const SubtopicExists       = "Subtopic already exists";
 	const char * const InstructorNameEmpty  = "Instructor name cannot be empty";
 	const char * const DisciplineNameEmpty  = "Discipline name cannot be empty";
+	const char * const KeywordEmpty         = "Keyword cannot be empty";
 	const char * const TopicNameEmpty       = "Topic name cannot be empty";
 	const char * const MainTopicDuplication = "Name of the main topic must be unique";
 	const char * const MainTopicUnknown     = "Unknown main topic";

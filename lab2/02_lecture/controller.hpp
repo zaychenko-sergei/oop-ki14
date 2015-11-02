@@ -50,9 +50,9 @@ public:
 
 	void setTopicSlidesCount ( FullTopicName const & _topic, int _slidesCount );
 
-	int getTopicOwnSlidesCount ( FullTopicName const & _topic );
+	int getTopicOwnSlidesCount ( FullTopicName const & _topic ) const;
 
-	int getTopicTotalSlidesCount ( FullTopicName const & _topic );
+	int getTopicTotalSlidesCount ( FullTopicName const & _topic ) const;
 
 /*-----------------------------------------------------------------*/
 

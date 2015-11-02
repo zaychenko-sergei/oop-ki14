@@ -6,18 +6,7 @@
 /*****************************************************************************/
 
 
-Student::Student ( int _registrationId, std::string const & _fullName, Date _birthDay, StudyForm _studyForm )
-	:	m_registrationId( _registrationId )
-	,	m_fullName( _fullName )
-	,	m_birthday( _birthDay )
-	,	m_studyForm( _studyForm )
-{
-	if ( _fullName.empty() )
-		throw std::logic_error( Messages::InvalidStudentName );
-
-	if ( _birthDay >= Date() )
-		throw std::logic_error( Messages::StudentBirthdayTooLate );
-}
+// TODO implement your methods here
 
 
 /*****************************************************************************/
