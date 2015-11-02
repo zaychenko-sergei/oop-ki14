@@ -20,6 +20,7 @@ namespace Messages
 	const char * const TaskAlreadyExists        = "Task with identical name already exists";
 	const char * const EmployeeNotFound         = "Specified employee not found";
 	const char * const TaskNotFound             = "Task not found";
+	const char * const NegativeHourCost         = "Hour cost cannot be negative";
 }
 
 

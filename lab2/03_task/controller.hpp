@@ -34,7 +34,7 @@ public:
 
 	void updateEmployeeLevel ( std::string const & _fullName, int _newLevel );
 
-	int getEmployeeLevel ( std::string const & _fullName );
+	int getEmployeeLevel ( std::string const & _fullName ) const;
 
 /*-----------------------------------------------------------------*/
 
