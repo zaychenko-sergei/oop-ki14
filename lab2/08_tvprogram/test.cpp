@@ -4,7 +4,7 @@
 
 #include "controller.hpp"
 #include "day.hpp"
-#include "datetime.hpp"
+#include "time.hpp"
 #include "messages.hpp"
 
 #include "testslib.hpp"
@@ -66,7 +66,7 @@ DECLARE_OOP_TEST( tvprogram_2_1_add_program_one )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Monday, "cartoons", DateTime( 2015, 10, 6, 7, 0, 0 ), Genre::Series, 5 );
+	c.addProgram( "test", Day::Monday, "cartoons", Time( 7, 0, 0 ), Genre::Series, 5 );
 }
 
 
@@ -77,8 +77,8 @@ DECLARE_OOP_TEST( tvprogram_2_2_add_program_several )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Monday, "cartoons", DateTime( 2015, 10, 1, 7, 0, 0 ), Genre::Series, 4 );
-	c.addProgram( "test", Day::Tuesday, "news", DateTime( 2015, 10, 2, 7, 0, 0 ), Genre::Information, 3 );
+	c.addProgram( "test", Day::Monday, "cartoons", Time( 7, 0, 0 ), Genre::Series, 4 );
+	c.addProgram( "test", Day::Tuesday, "news", Time( 7, 0, 0 ), Genre::Information, 3 );
 }
 
 
@@ -91,7 +91,7 @@ DECLARE_OOP_TEST( tvprogram_2_3_add_program_with_bad_day_index )
 	c.addChannel( "test" );
 
 	ASSERT_THROWS(
-			c.addProgram( "test", Day::Count, "cartoons", DateTime( 2015, 10, 6, 7, 0, 0 ), Genre::Series, 4 );
+			c.addProgram( "test", Day::Count, "cartoons", Time( 7, 0, 0 ), Genre::Series, 4 );
 		,	Messages::InvalidDayIndex
 	);
 }
@@ -106,7 +106,7 @@ DECLARE_OOP_TEST( tvprogram_2_4_add_program_with_empty_program_name )
 	c.addChannel( "test" );
 
 	ASSERT_THROWS(
-			c.addProgram( "test", Day::Monday, "", DateTime( 2015, 12, 6, 15, 34, 1 ), Genre::Series, 4 );
+			c.addProgram( "test", Day::Monday, "", Time( 15, 34, 1 ), Genre::Series, 4 );
 		,	Messages::EmptyProgramName
 	);
 }
@@ -119,10 +119,10 @@ DECLARE_OOP_TEST( tvprogram_2_5_1_add_program_with_bad_time_time_is_earlier_than
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Monday, "program #1", DateTime( 2013, 5, 10, 15, 0, 0 ), Genre::Sport, 1 );
+	c.addProgram( "test", Day::Monday, "program #1", Time( 15, 0, 0 ), Genre::Sport, 1 );
 
 	ASSERT_THROWS(
-			c.addProgram( "test", Day::Monday, "program #2", DateTime( 2013, 5, 10, 14, 0, 0 ), Genre::Show, 5 );
+			c.addProgram( "test", Day::Monday, "program #2", Time( 14, 0, 0 ), Genre::Show, 5 );
 		,	Messages::InvalidProgramTime
 	);
 }
@@ -131,14 +131,14 @@ DECLARE_OOP_TEST( tvprogram_2_5_1_add_program_with_bad_time_time_is_earlier_than
 /*****************************************************************************/
 
 
-DECLARE_OOP_TEST( tvprogram_2_5_2_add_program_with_bad_time_the_same_day_for_the_next_weeks_day )
+DECLARE_OOP_TEST( tvprogram_2_5_2_add_program_for_previous_programs_day )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Monday, "program #1", DateTime( 2013, 5, 10, 15, 0, 0 ), Genre::Series, 3 );
+	c.addProgram( "test", Day::Tuesday, "program #1", Time( 15, 0, 0 ), Genre::Series, 3 );
 
 	ASSERT_THROWS(
-			c.addProgram( "test", Day::Tuesday, "program #2", DateTime( 2013, 5, 10, 16, 0, 0 ), Genre::Movie, 2 );
+			c.addProgram( "test", Day::Monday, "program #2", Time( 16, 0, 0 ), Genre::Movie, 2 );
 		,	Messages::InvalidProgramTime
 	);
 }
@@ -151,10 +151,10 @@ DECLARE_OOP_TEST( tvprogram_2_5_3_add_program_with_bad_time_the_same_day_for_the
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Tuesday, "program #1", DateTime( 2013, 5, 10, 16, 0, 0 ), Genre::Series, 3 );
+	c.addProgram( "test", Day::Tuesday, "program #1", Time( 16, 0, 0 ), Genre::Series, 3 );
 
 	ASSERT_THROWS(
-			c.addProgram( "test", Day::Monday, "program #2", DateTime( 2013, 5, 10, 15, 0, 0 ), Genre::Movie, 2 );
+			c.addProgram( "test", Day::Monday, "program #2", Time( 15, 0, 0 ), Genre::Movie, 2 );
 		,	Messages::InvalidProgramTime
 	);
 }
@@ -167,10 +167,10 @@ DECLARE_OOP_TEST( tvprogram_2_5_4_add_program_with_bad_time_the_same_time_as_pre
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Monday, "program #1", DateTime( 2013, 5, 10, 15, 0, 0 ), Genre::Series, 2 );
+	c.addProgram( "test", Day::Monday, "program #1", Time( 15, 0, 0 ), Genre::Series, 2 );
 
 	ASSERT_THROWS(
-			c.addProgram( "test", Day::Monday, "program #2", DateTime( 2013, 5, 10, 15, 0, 0 ), Genre::Movie, 2 );
+			c.addProgram( "test", Day::Monday, "program #2", Time( 15, 0, 0 ), Genre::Movie, 2 );
 		,	Messages::InvalidProgramTime
 	);
 }
@@ -185,15 +185,15 @@ DECLARE_OOP_TEST( tvprogram_2_6_add_program_with_bad_rating )
 	c.addChannel( "test" );
 
 	ASSERT_THROWS(
-			c.addProgram( "test", Day::Monday, "program #69", DateTime( 2015, 7, 15, 0, 0, 0 ), Genre::Other, -5 );
+			c.addProgram( "test", Day::Monday, "program #69", Time( 0, 0, 0 ), Genre::Other, -5 );
 		,	Messages::InvalidRatingValue
 	);
 	ASSERT_THROWS(
-			c.addProgram( "test", Day::Monday, "program #69", DateTime( 2015, 7, 15, 0, 0, 0 ), Genre::Other, 0 );
+			c.addProgram( "test", Day::Monday, "program #69", Time( 0, 0, 0 ), Genre::Other, 0 );
 		,	Messages::InvalidRatingValue
 	);
 	ASSERT_THROWS(
-			c.addProgram( "test", Day::Monday, "program #69", DateTime( 2015, 7, 15, 0, 0, 0 ), Genre::Other, 6 );
+			c.addProgram( "test", Day::Monday, "program #69", Time( 0, 0, 0 ), Genre::Other, 6 );
 		,	Messages::InvalidRatingValue
 	);
 }
@@ -208,8 +208,8 @@ DECLARE_OOP_TEST( tvprogram_2_7_add_program_programs_on_different_channels_with_
 	c.addChannel( "channel #1" );
 	c.addChannel( "channel #2" );
 
-	c.addProgram( "channel #1", Day::Monday, "program #1", DateTime( 2015, 7, 15, 0, 0, 0 ), Genre::Other, 1 );
-	c.addProgram( "channel #2", Day::Monday, "program #2", DateTime( 2015, 7, 15, 0, 0, 0 ), Genre::Other, 1 );
+	c.addProgram( "channel #1", Day::Monday, "program #1", Time( 0, 0, 0 ), Genre::Other, 1 );
+	c.addProgram( "channel #2", Day::Monday, "program #2", Time( 0, 0, 0 ), Genre::Other, 1 );
 }
 
 
@@ -222,8 +222,8 @@ DECLARE_OOP_TEST( tvprogram_2_8_add_program_programs_on_different_channels_with_
 	c.addChannel( "channel #1" );
 	c.addChannel( "channel #2" );
 
-	c.addProgram( "channel #1", Day::Monday, "program", DateTime( 2015, 7, 15, 1, 0, 0 ), Genre::Movie, 2 );
-	c.addProgram( "channel #2", Day::Monday, "program", DateTime( 2015, 7, 15, 2, 0, 0 ), Genre::Series, 3 );
+	c.addProgram( "channel #1", Day::Monday, "program", Time( 1, 0, 0 ), Genre::Movie, 2 );
+	c.addProgram( "channel #2", Day::Monday, "program", Time( 2, 0, 0 ), Genre::Series, 3 );
 }
 
 
@@ -234,8 +234,8 @@ DECLARE_OOP_TEST( tvprogram_2_9_add_program_with_the_same_name )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Monday, "news", DateTime( 2015, 10, 1, 7, 0, 0 ), Genre::Information, 3 );
-	c.addProgram( "test", Day::Monday, "news", DateTime( 2015, 10, 1, 8, 0, 0 ), Genre::Information, 3 );
+	c.addProgram( "test", Day::Monday, "news", Time( 7, 0, 0 ), Genre::Information, 3 );
+	c.addProgram( "test", Day::Monday, "news", Time( 8, 0, 0 ), Genre::Information, 3 );
 }
 
 
@@ -248,8 +248,8 @@ DECLARE_OOP_TEST( tvprogram_2_10_add_program_with_empty_channel_name )
 	c.addChannel( "test" );
 
 	ASSERT_THROWS(
-			c.addProgram( "", Day::Monday, "program", DateTime( 2015, 7, 15, 0, 0, 0 ), Genre::Other, 1 );
-		,	Messages::EmptyChannelName
+			c.addProgram( "", Day::Monday, "program", Time( 0, 0, 0 ), Genre::Other, 1 );
+		,	Messages::ChannelCannotBeFound
 	);
 }
 
@@ -263,7 +263,7 @@ DECLARE_OOP_TEST( tvprogram_2_11_add_program_for_missing_name )
 	c.addChannel( "test" );
 
 	ASSERT_THROWS(
-			c.addProgram( "other", Day::Monday, "program", DateTime( 2015, 7, 15, 0, 0, 0 ), Genre::Other, 1 );
+			c.addProgram( "other", Day::Monday, "program", Time( 0, 0, 0 ), Genre::Other, 1 );
 		,	Messages::ChannelCannotBeFound
 	);
 }
@@ -276,25 +276,19 @@ DECLARE_OOP_TEST( tvprogram_2_12_add_program_when_previous_channels_are_empty )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Sunday, "program", DateTime( 2015, 7, 15, 0, 0, 0 ), Genre::Other, 1 );
+	c.addProgram( "test", Day::Sunday, "program", Time( 0, 0, 0 ), Genre::Other, 1 );
 }
 
 
 /*****************************************************************************/
 
 
-DECLARE_OOP_TEST( tvprogram_2_13_add_program_to_the_last_day_with_bad_date_when_other_program_added_to_the_first_day )
+DECLARE_OOP_TEST( tvprogram_2_13_add_program_to_the_last_day_after_added_to_first_day_some_time )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Monday, "program #69", DateTime( 2015, 7, 12, 23, 50, 0 ), Genre::Other, 5 );
-
-	// NOTE: We add program with "17" day, but the last day of week is "18" day.
-	// NOTE: It was calculated relatively to existing program.
-	ASSERT_THROWS(
-			c.addProgram( "test", Day::Sunday, "program #69", DateTime( 2015, 7, 17, 23, 50, 0 ), Genre::Other, 5 );
-		,	Messages::InvalidProgramTime
-	);
+	c.addProgram( "test", Day::Monday, "program #69", Time( 23, 50, 0 ), Genre::Other, 5 );
+	c.addProgram( "test", Day::Sunday, "program #69", Time( 23, 50, 0 ), Genre::Other, 5 );
 }
 
 
@@ -305,12 +299,12 @@ DECLARE_OOP_TEST( tvprogram_2_14_add_program_to_the_first_day_with_bad_date_when
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Sunday, "program #69", DateTime( 2015, 7, 17, 23, 50, 0 ), Genre::Other, 5 );
+	c.addProgram( "test", Day::Sunday, "program #69", Time( 23, 50, 0 ), Genre::Other, 5 );
 
 	// NOTE: We add program with "12" day, but the first day of week is "11" day.
 	// NOTE: It was calculated relatively to existing program.
 	ASSERT_THROWS(
-			c.addProgram( "test", Day::Monday, "program #69", DateTime( 2015, 7, 12, 23, 50, 0 ), Genre::Other, 5 );
+			c.addProgram( "test", Day::Monday, "program #69", Time( 23, 50, 0 ), Genre::Other, 5 );
 		,	Messages::InvalidProgramTime
 	);
 }
@@ -341,7 +335,7 @@ DECLARE_OOP_TEST( tvprogram_3_2_get_programs_by_day_only_one_program )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Friday, "program", DateTime( 2015, 7, 17, 23, 50, 0 ), Genre::Other, 5 );
+	c.addProgram( "test", Day::Friday, "program", Time( 23, 50, 0 ), Genre::Other, 5 );
 
 	std::vector< std::string > empty;
 	std::vector< std::string > day4 = { "program" };
@@ -362,9 +356,9 @@ DECLARE_OOP_TEST( tvprogram_3_3_get_programs_by_day_several_programs )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Friday, "program #1", DateTime( 2015, 7, 17, 23, 50, 0 ), Genre::Other, 5 );
-	c.addProgram( "test", Day::Friday, "program #3", DateTime( 2015, 7, 17, 23, 51, 0 ), Genre::Other, 3 );
-	c.addProgram( "test", Day::Wednesday, "small", DateTime( 2015, 7, 15, 12, 50, 0 ), Genre::Movie, 4 );
+	c.addProgram( "test", Day::Wednesday, "small",   Time( 12, 50, 0 ), Genre::Movie, 4 );
+	c.addProgram( "test", Day::Friday, "program #1", Time( 23, 50, 0 ), Genre::Other, 5 );
+	c.addProgram( "test", Day::Friday, "program #3", Time( 23, 51, 0 ), Genre::Other, 3 );
 
 	std::vector< std::string > empty;
 	std::vector< std::string > day2 = { "small" };
@@ -386,9 +380,9 @@ DECLARE_OOP_TEST( tvprogram_3_4_get_programs_by_day_with_bad_day_index )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Friday, "program #1", DateTime( 2015, 7, 17, 23, 50, 0 ), Genre::Other, 5 );
-	c.addProgram( "test", Day::Friday, "program #3", DateTime( 2015, 7, 17, 23, 51, 0 ), Genre::Other, 3 );
-	c.addProgram( "test", Day::Wednesday, "small", DateTime( 2015, 7, 15, 12, 50, 0 ), Genre::Movie, 4 );
+	c.addProgram( "test", Day::Wednesday, "small", Time( 12, 50, 0 ), Genre::Movie, 4 );
+	c.addProgram( "test", Day::Friday, "program #1", Time( 23, 50, 0 ), Genre::Other, 5 );
+	c.addProgram( "test", Day::Friday, "program #3", Time(23, 51, 0 ),  Genre::Other, 3 );
 
 	ASSERT_THROWS(
 			c.getPrograms( "test", Day::Count );
@@ -404,13 +398,13 @@ DECLARE_OOP_TEST( tvprogram_3_5_get_programs_by_day_with_empty_channel_name )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Friday, "program #1", DateTime( 2015, 7, 17, 23, 50, 0 ), Genre::Other, 5 );
-	c.addProgram( "test", Day::Friday, "program #3", DateTime( 2015, 7, 17, 23, 51, 0 ), Genre::Other, 3 );
-	c.addProgram( "test", Day::Wednesday, "small", DateTime( 2015, 7, 15, 12, 50, 0 ), Genre::Movie, 4 );
+	c.addProgram( "test", Day::Wednesday, "small", Time( 12, 50, 0 ), Genre::Movie, 4 );
+	c.addProgram( "test", Day::Friday, "program #1", Time( 23, 50, 0 ), Genre::Other, 5 );
+	c.addProgram( "test", Day::Friday, "program #3", Time( 23, 51, 0 ), Genre::Other, 3 );
 
 	ASSERT_THROWS(
 			c.getPrograms( "", Day::Friday );
-		,	Messages::EmptyChannelName
+		,	Messages::ChannelCannotBeFound
 	);
 }
 
@@ -422,9 +416,9 @@ DECLARE_OOP_TEST( tvprogram_3_6_get_programs_by_day_for_missing_channel )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Friday, "program #1", DateTime( 2015, 7, 17, 23, 50, 0 ), Genre::Other, 5 );
-	c.addProgram( "test", Day::Friday, "program #3", DateTime( 2015, 7, 17, 23, 51, 0 ), Genre::Other, 3 );
-	c.addProgram( "test", Day::Wednesday, "small", DateTime( 2015, 7, 15, 12, 50, 0 ), Genre::Movie, 4 );
+	c.addProgram( "test", Day::Wednesday, "small", Time( 12, 50, 0 ), Genre::Movie, 4 );
+	c.addProgram( "test", Day::Friday, "program #1", Time( 23, 50, 0 ), Genre::Other, 5 );
+	c.addProgram( "test", Day::Friday, "program #3", Time( 23, 51, 0 ), Genre::Other, 3 );
 
 	ASSERT_THROWS(
 			c.getPrograms( "other", Day::Friday );
@@ -462,9 +456,9 @@ DECLARE_OOP_TEST( tvprogram_4_2_get_week_programs_only_one_day )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Sunday, "program #1", DateTime( 2015, 7, 17, 23, 50, 0 ), Genre::Movie, 5 );
-	c.addProgram( "test", Day::Sunday, "program #2", DateTime( 2015, 7, 17, 23, 51, 0 ), Genre::Movie, 5 );
-	c.addProgram( "test", Day::Sunday, "program #3", DateTime( 2015, 7, 17, 23, 52, 0 ), Genre::Movie, 5 );
+	c.addProgram( "test", Day::Sunday, "program #1", Time( 23, 50, 0 ), Genre::Movie, 5 );
+	c.addProgram( "test", Day::Sunday, "program #2", Time( 23, 51, 0 ), Genre::Movie, 5 );
+	c.addProgram( "test", Day::Sunday, "program #3", Time( 23, 52, 0 ), Genre::Movie, 5 );
 
 	std::vector< std::vector< std::string > > expectation =
 	{
@@ -487,15 +481,15 @@ DECLARE_OOP_TEST( tvprogram_4_3_get_week_programs_empty_day_between_filled_days 
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Tuesday, "program #1", DateTime( 2015, 7, 11, 23, 50, 0 ), Genre::Movie, 1 );
-	c.addProgram( "test", Day::Tuesday, "program #2", DateTime( 2015, 7, 11, 23, 51, 0 ), Genre::Series, 5 );
-	c.addProgram( "test", Day::Saturday, "program #3", DateTime( 2015, 7, 15, 23, 50, 0 ), Genre::Show, 3 );
-	c.addProgram( "test", Day::Saturday, "program #4", DateTime( 2015, 7, 15, 23, 51, 0 ), Genre::Sport, 4 );
-	c.addProgram( "test", Day::Saturday, "program #5", DateTime( 2015, 7, 15, 23, 52, 0 ), Genre::Information, 5 );
-	c.addProgram( "test", Day::Saturday, "program #6", DateTime( 2015, 7, 15, 23, 53, 0 ), Genre::Other, 2 );
-	c.addProgram( "test", Day::Sunday, "program #7", DateTime( 2015, 7, 16, 23, 50, 0 ), Genre::Show, 2 );
-	c.addProgram( "test", Day::Sunday, "program #8", DateTime( 2015, 7, 16, 23, 51, 0 ), Genre::Series, 3 );
-	c.addProgram( "test", Day::Sunday, "program #9", DateTime( 2015, 7, 16, 23, 52, 0 ), Genre::Series, 5 );
+	c.addProgram( "test", Day::Tuesday, "program #1",  Time( 23, 50, 0 ), Genre::Movie, 1 );
+	c.addProgram( "test", Day::Tuesday, "program #2",  Time( 23, 51, 0 ), Genre::Series, 5 );
+	c.addProgram( "test", Day::Saturday, "program #3", Time( 23, 50, 0 ), Genre::Show, 3 );
+	c.addProgram( "test", Day::Saturday, "program #4", Time( 23, 51, 0 ), Genre::Sport, 4 );
+	c.addProgram( "test", Day::Saturday, "program #5", Time( 23, 52, 0 ), Genre::Information, 5 );
+	c.addProgram( "test", Day::Saturday, "program #6", Time( 23, 53, 0 ), Genre::Other, 2 );
+	c.addProgram( "test", Day::Sunday, "program #7",   Time( 23, 50, 0 ), Genre::Show, 2 );
+	c.addProgram( "test", Day::Sunday, "program #8",   Time( 23, 51, 0 ), Genre::Series, 3 );
+	c.addProgram( "test", Day::Sunday, "program #9",   Time( 23, 52, 0 ), Genre::Series, 5 );
 
 	std::vector< std::vector< std::string > > expectation =
 	{
@@ -518,22 +512,22 @@ DECLARE_OOP_TEST( tvprogram_4_4_get_week_programs_full_week )
 {
 	Controller c;
 	c.addChannel( "test" );
-	c.addProgram( "test", Day::Monday, "program #1", DateTime( 2015, 7, 10, 23, 50, 0 ), Genre::Movie, 1 );
-	c.addProgram( "test", Day::Tuesday, "program #2", DateTime( 2015, 7, 11, 23, 50, 0 ), Genre::Movie, 1 );
-	c.addProgram( "test", Day::Tuesday, "program #3", DateTime( 2015, 7, 11, 23, 51, 0 ), Genre::Series, 5 );
-	c.addProgram( "test", Day::Wednesday, "program #4", DateTime( 2015, 7, 12, 23, 50, 0 ), Genre::Movie, 1 );
-	c.addProgram( "test", Day::Wednesday, "program #5", DateTime( 2015, 7, 12, 23, 51, 0 ), Genre::Series, 5 );
-	c.addProgram( "test", Day::Thursday, "program #6", DateTime( 2015, 7, 13, 23, 50, 0 ), Genre::Show, 3 );
-	c.addProgram( "test", Day::Friday, "program #7", DateTime( 2015, 7, 14, 23, 50, 0 ), Genre::Show, 2 );
-	c.addProgram( "test", Day::Friday, "program #8", DateTime( 2015, 7, 14, 23, 51, 0 ), Genre::Series, 3 );
-	c.addProgram( "test", Day::Friday, "program #9", DateTime( 2015, 7, 14, 23, 52, 0 ), Genre::Sport, 5 );
-	c.addProgram( "test", Day::Saturday, "program #10", DateTime( 2015, 7, 15, 23, 50, 0 ), Genre::Show, 3 );
-	c.addProgram( "test", Day::Saturday, "program #11", DateTime( 2015, 7, 15, 23, 51, 0 ), Genre::Sport, 4 );
-	c.addProgram( "test", Day::Saturday, "program #12", DateTime( 2015, 7, 15, 23, 52, 0 ), Genre::Information, 5 );
-	c.addProgram( "test", Day::Saturday, "program #13", DateTime( 2015, 7, 15, 23, 53, 0 ), Genre::Other, 2 );
-	c.addProgram( "test", Day::Sunday, "program #14", DateTime( 2015, 7, 16, 23, 50, 0 ), Genre::Show, 2 );
-	c.addProgram( "test", Day::Sunday, "program #15", DateTime( 2015, 7, 16, 23, 51, 0 ), Genre::Sport, 3 );
-	c.addProgram( "test", Day::Sunday, "program #16", DateTime( 2015, 7, 16, 23, 52, 0 ), Genre::Series, 5 );
+	c.addProgram( "test", Day::Monday, "program #1",	Time( 23, 50, 0 ), Genre::Movie, 1 );
+	c.addProgram( "test", Day::Tuesday, "program #2",	Time( 23, 50, 0 ), Genre::Movie, 1 );
+	c.addProgram( "test", Day::Tuesday, "program #3",	Time( 23, 51, 0 ), Genre::Series, 5 );
+	c.addProgram( "test", Day::Wednesday, "program #4", Time( 23, 50, 0 ), Genre::Movie, 1 );
+	c.addProgram( "test", Day::Wednesday, "program #5", Time( 23, 51, 0 ), Genre::Series, 5 );
+	c.addProgram( "test", Day::Thursday, "program #6",	Time( 23, 50, 0 ), Genre::Show, 3 );
+	c.addProgram( "test", Day::Friday, "program #7",	Time( 23, 50, 0 ), Genre::Show, 2 );
+	c.addProgram( "test", Day::Friday, "program #8",	Time( 23, 51, 0 ), Genre::Series, 3 );
+	c.addProgram( "test", Day::Friday, "program #9",	Time( 23, 52, 0 ), Genre::Sport, 5 );
+	c.addProgram( "test", Day::Saturday, "program #10", Time( 23, 50, 0 ), Genre::Show, 3 );
+	c.addProgram( "test", Day::Saturday, "program #11", Time( 23, 51, 0 ), Genre::Sport, 4 );
+	c.addProgram( "test", Day::Saturday, "program #12", Time( 23, 52, 0 ), Genre::Information, 5 );
+	c.addProgram( "test", Day::Saturday, "program #13", Time( 23, 53, 0 ), Genre::Other, 2 );
+	c.addProgram( "test", Day::Sunday, "program #14",	Time( 23, 50, 0 ), Genre::Show, 2 );
+	c.addProgram( "test", Day::Sunday, "program #15",	Time( 23, 51, 0 ), Genre::Sport, 3 );
+	c.addProgram( "test", Day::Sunday, "program #16",	Time( 23, 52, 0 ), Genre::Series, 5 );
 
 	std::vector< std::vector< std::string > > expectation =
 	{
@@ -559,7 +553,7 @@ DECLARE_OOP_TEST( tvprogram_4_5_get_week_programs_with_empty_channel_name )
 
 	ASSERT_THROWS(
 			c.getPrograms( "" );
-		,	Messages::EmptyChannelName
+		,	Messages::ChannelCannotBeFound
 	);
 }
 
@@ -594,42 +588,42 @@ void generateModel( Controller & _c )
 	{
 		Day day = static_cast< Day >( i );
 
-		_c.addProgram( "News 24/7", day, "News #1", DateTime( 2015, 1, firstDay + i, 3, 0, 0 ), Genre::Information, 3 );
-		_c.addProgram( "News 24/7", day, "News #2", DateTime( 2015, 1, firstDay + i, 7, 0, 0 ), Genre::Information, 3 );
-		_c.addProgram( "News 24/7", day, "Sport News #1", DateTime( 2015, 1, firstDay + i, 11, 0, 0 ), Genre::Sport, 4 );
-		_c.addProgram( "News 24/7", day, "News #4", DateTime( 2015, 1, firstDay + i, 15, 0, 0 ), Genre::Information, 4 );
-		_c.addProgram( "News 24/7", day, "Sport News #2", DateTime( 2015, 1, firstDay + i, 19, 0, 0 ), Genre::Sport, 3 );
-		_c.addProgram( "News 24/7", day, "News #5", DateTime( 2015, 1, firstDay + i, 22, 0, 0 ), Genre::Show, 4 );
+		_c.addProgram( "News 24/7", day, "News #1", Time( 3, 0, 0 ), Genre::Information, 3 );
+		_c.addProgram( "News 24/7", day, "News #2", Time( 7, 0, 0 ), Genre::Information, 3 );
+		_c.addProgram( "News 24/7", day, "Sport News #1", Time( 11, 0, 0 ), Genre::Sport, 4 );
+		_c.addProgram( "News 24/7", day, "News #4", Time( 15, 0, 0 ), Genre::Information, 4 );
+		_c.addProgram( "News 24/7", day, "Sport News #2", Time( 19, 0, 0 ), Genre::Sport, 3 );
+		_c.addProgram( "News 24/7", day, "News #5", Time( 22, 0, 0 ), Genre::Show, 4 );
 	}
 
 	for ( int i = 0; i < static_cast< int >( Day::Count ); ++i )
 	{
 		Day day = static_cast< Day >( i );
 
-		_c.addProgram( "Discovery", day, "How to eat monkeys", DateTime( 2015, 1, firstDay + i, 3, 0, 0 ), Genre::Show, 5 );
-		_c.addProgram( "Discovery", day, "Safari run", DateTime( 2015, 1, firstDay + i, 7, 0, 0 ), Genre::Other, 4 );
-		_c.addProgram( "Discovery", day, "Epic destination", DateTime( 2015, 1, firstDay + i, 11, 0, 0 ), Genre::Movie, 4 );
-		_c.addProgram( "Discovery", day, "Cats and dogs", DateTime( 2015, 1, firstDay + i, 15, 0, 0 ), Genre::Other, 5 );
-		_c.addProgram( "Discovery", day, "Do not watch us", DateTime( 2015, 1, firstDay + i, 19, 0, 0 ), Genre::Other, 4 );
+		_c.addProgram( "Discovery", day, "How to eat monkeys", Time( 3, 0, 0 ), Genre::Show, 5 );
+		_c.addProgram( "Discovery", day, "Safari run", Time( 7, 0, 0 ), Genre::Other, 4 );
+		_c.addProgram( "Discovery", day, "Epic destination", Time( 11, 0, 0 ), Genre::Movie, 4 );
+		_c.addProgram( "Discovery", day, "Cats and dogs", Time( 15, 0, 0 ), Genre::Other, 5 );
+		_c.addProgram( "Discovery", day, "Do not watch us", Time( 19, 0, 0 ), Genre::Other, 4 );
 
 		if ( day == Day::Saturday )
-			_c.addProgram( "Discovery", day, "How to train your QA", DateTime( 2015, 1, firstDay + i, 19, 30, 0 ), Genre::Show, 5 );
+			_c.addProgram( "Discovery", day, "How to train your QA", Time( 19, 30, 0 ), Genre::Show, 5 );
 		else
-			_c.addProgram( "Discovery",day, "Holy evening", DateTime( 2015, 1, firstDay + i, 21, 0, 0 ), Genre::Other, 4 );
+			_c.addProgram( "Discovery",day, "Holy evening", Time( 21, 0, 0 ), Genre::Other, 4 );
 	}
 
 	for ( int i = 0; i < static_cast< int >( Day::Count ); ++i )
 	{
 		Day day = static_cast< Day >( i );
 
-		_c.addProgram( "IT", day, "Teach yourself C++ in 21 days", DateTime( 2015, 1, firstDay + i, 3, 0, 0 ), Genre::Information, 1 );
-		_c.addProgram( "IT", day, "Clouds and Fogs", DateTime( 2015, 1, firstDay + i, 7, 0, 0 ), Genre::Information, 5 );
-		_c.addProgram( "IT", day, "Java vs C#", DateTime( 2015, 1, firstDay + i, 11, 0, 0 ), Genre::Information, 4 );
-		_c.addProgram( "IT", day, "Why we need QA?", DateTime( 2015, 1, firstDay + i, 15, 0, 0 ), Genre::Information, 5 );
-		_c.addProgram( "IT", day, "Agile", DateTime( 2015, 1, firstDay + i, 19, 0, 0 ), Genre::Information, 5 );
-		_c.addProgram( "IT", day, "VCS", DateTime( 2015, 1, firstDay + i, 21, 0, 0 ), Genre::Series, 4 );
+		_c.addProgram( "IT", day, "Teach yourself C++ in 21 days", Time( 3, 0, 0 ), Genre::Information, 1 );
+		_c.addProgram( "IT", day, "Clouds and Fogs", Time( 7, 0, 0 ), Genre::Information, 5 );
+		_c.addProgram( "IT", day, "Java vs C#", Time( 11, 0, 0 ), Genre::Information, 4 );
+		_c.addProgram( "IT", day, "Why we need QA?", Time( 15, 0, 0 ), Genre::Information, 5 );
+		_c.addProgram( "IT", day, "Agile", Time( 19, 0, 0 ), Genre::Information, 5 );
+		_c.addProgram( "IT", day, "VCS", Time( 21, 0, 0 ), Genre::Series, 4 );
 	}
-	_c.addProgram( "IT", Day::Friday, "Pizza & Beer", DateTime( 2015, 1, firstDay + 5, 22, 0, 0 ), Genre::Sport, 5 );
+	_c.addProgram( "IT", Day::Friday, "Pizza & Beer", Time( 22, 0, 0 ), Genre::Sport, 5 );
 }
 
 

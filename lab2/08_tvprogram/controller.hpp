@@ -6,7 +6,7 @@
 /*****************************************************************************/
 
 #include "day.hpp"
-#include "datetime.hpp"
+#include "time.hpp"
 #include "genre.hpp"
 
 #include <vector>
@@ -42,7 +42,7 @@ public:
 			const std::string & _channelName
 		,	Day _day
 		,	const std::string & _programName
-		,	const DateTime & _startTime
+		,	Time _startTime
 		,	Genre _genre
 		,	int _rating
 	);

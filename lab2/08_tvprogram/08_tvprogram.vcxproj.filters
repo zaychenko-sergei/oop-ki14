@@ -13,7 +13,7 @@
     <ClCompile Include="test.cpp">
       <Filter>Test</Filter>
     </ClCompile>
-    <ClCompile Include="datetime.cpp">
+    <ClCompile Include="time.cpp">
       <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,9 +41,6 @@
     <ClInclude Include="messages.hpp">
       <Filter>Controller</Filter>
     </ClInclude>
-    <ClInclude Include="datetime.hpp">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="testslib.hpp">
       <Filter>Test</Filter>
     </ClInclude>
@@ -51,6 +48,9 @@
       <Filter>Model</Filter>
     </ClInclude>
     <ClInclude Include="day.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="time.hpp">
       <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>

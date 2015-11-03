@@ -82,14 +82,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="controller.cpp" />
-    <ClCompile Include="datetime.cpp" />
+    <ClCompile Include="time.cpp" />
     <ClCompile Include="test.cpp" />
     <ClCompile Include="program.cpp" />
     <ClCompile Include="tvchannel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controller.hpp" />
-    <ClInclude Include="datetime.hpp" />
+    <ClInclude Include="time.hpp" />
     <ClInclude Include="day.hpp" />
     <ClInclude Include="genre.hpp" />
     <ClInclude Include="messages.hpp" />
