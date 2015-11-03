@@ -33,12 +33,12 @@ public:
 
 	bool isLeapYear() const;
 
-	bool operator == ( const DateTime & _d ) const;
-	bool operator != ( const DateTime & _d ) const;
-	bool operator < ( const DateTime & _d ) const;
-	bool operator <= ( const DateTime & _d ) const;
-	bool operator > ( const DateTime & _d ) const;
-	bool operator >= ( const DateTime & _d ) const;
+	bool operator == ( DateTime _d ) const;
+	bool operator != ( DateTime _d ) const;
+	bool operator < ( DateTime _d ) const;
+	bool operator <= ( DateTime _d ) const;
+	bool operator > ( DateTime _d ) const;
+	bool operator >= ( DateTime _d ) const;
 
 /*-----------------------------------------------------------------*/
 
@@ -59,7 +59,7 @@ private:
 
 /*****************************************************************************/
 
-std::ostream & operator << ( std::ostream & o, const DateTime & d );
+std::ostream & operator << ( std::ostream & o, DateTime d );
 
 std::istream & operator >> ( std::istream & i, DateTime & d );
 

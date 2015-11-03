@@ -110,7 +110,7 @@ DECLARE_OOP_TEST( calls_1_8_obtain_full_name_by_empty_phone_number )
 
 	ASSERT_THROWS(
 			c.getFullName( "" )
-		,	Messages::EmptyPhoneNumber
+		,	Messages::ContactCannotBeFound
 	);
 }
 

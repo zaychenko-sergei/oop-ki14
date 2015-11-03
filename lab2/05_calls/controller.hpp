@@ -44,7 +44,7 @@ public:
 	void addCall (
 			const std::string & _phoneNumber
 		,	CallType _callType
-		,	const DateTime & _callTime
+		,	DateTime _callTime
 		,	int _callDuration
 	);
 
@@ -58,13 +58,13 @@ public:
 
 	CallType getCallType ( int _callIndex ) const;
 
-	const DateTime & getCallTime ( int _callIndex ) const;
+	DateTime getCallTime ( int _callIndex ) const;
 
 	int getCallDuration ( int _callIndex ) const;
 
 /*-----------------------------------------------------------------*/
 
-	double getAverageBusinessTimeCallsDuration ( const DateTime & _day ) const;
+	double getAverageBusinessTimeCallsDuration ( DateTime _day ) const;
 
 	std::vector< std::string > getUnregisteredContactsFromCalls () const;
 

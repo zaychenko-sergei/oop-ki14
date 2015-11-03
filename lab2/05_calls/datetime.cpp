@@ -144,7 +144,7 @@ DateTime::isLeapYear() const
 
 
 bool
-DateTime::operator == ( const DateTime & d ) const
+DateTime::operator == ( DateTime d ) const
 {
 	return m_year == d.getYear()
 		&& m_month == d.getMonth()
@@ -159,7 +159,7 @@ DateTime::operator == ( const DateTime & d ) const
 
 
 bool
-DateTime::operator != ( const DateTime & d ) const
+DateTime::operator != ( DateTime d ) const
 {
 	return !( *this == d );
 }
@@ -169,7 +169,7 @@ DateTime::operator != ( const DateTime & d ) const
 
 
 bool
-DateTime::operator < ( const DateTime & d ) const
+DateTime::operator < ( DateTime d ) const
 {
 	if ( m_year < d.getYear() )
 		return true;
@@ -209,7 +209,7 @@ DateTime::operator < ( const DateTime & d ) const
 
 
 bool
-DateTime::operator > ( const DateTime & d ) const
+DateTime::operator > ( DateTime d ) const
 {
 	return d < *this;
 }
@@ -219,7 +219,7 @@ DateTime::operator > ( const DateTime & d ) const
 
 
 bool
-DateTime::operator <= ( const DateTime & d ) const
+DateTime::operator <= ( DateTime d ) const
 {
 	return ( *this < d ) || ( *this == d );
 }
@@ -229,7 +229,7 @@ DateTime::operator <= ( const DateTime & d ) const
 
 
 bool
-DateTime::operator >= ( const DateTime & d ) const
+DateTime::operator >= ( DateTime d ) const
 {
 	return ( d < *this ) || ( *this == d );
 }

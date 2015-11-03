@@ -13,6 +13,7 @@ namespace Messages
 	const char * const ContactCannotBeFound = "Contact cannot be found";
 	const char * const InvalidCallTime = "Call's time is not earlier than current time";
 	const char * const InvalidCallDuration = "Call's duration cannot be negative";
+	const char * const CallIndexOutOfRange = "Call index is out of valid range";
 
 	const char * const InvalidDateTime = "Date is not valid";
 	const char * const InvalidDateTimeFormat = "Date format is incorrect";
