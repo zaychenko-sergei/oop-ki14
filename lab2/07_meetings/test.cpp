@@ -14,10 +14,9 @@
 DECLARE_OOP_TEST( meetings_1_1_add_participant_one )
 {
 	Controller c;
-	c.addParticipant( "Ivan Ivanov", "you@example.com", Position::Developer );
+	c.addParticipant( "Ivan Ivanov", "you@example.com" );
 
 	assert( c.getParticipantEmail( "Ivan Ivanov" ) == "you@example.com" );
-	assert( c.getParticipantPosition( "Ivan Ivanov" ) == Position::Developer );
 }
 
 
@@ -27,14 +26,12 @@ DECLARE_OOP_TEST( meetings_1_1_add_participant_one )
 DECLARE_OOP_TEST( meetings_1_2_add_participant_several )
 {
 	Controller c;
-	c.addParticipant( "Ivan Ivanov", "www@site.com", Position::Developer );
-	c.addParticipant( "Vitalka", "you@example.com", Position::Intern );
+	c.addParticipant( "Ivan Ivanov", "www@site.com" );
+	c.addParticipant( "Vitalka", "you@example.com" );
 
 	assert( c.getParticipantEmail( "Ivan Ivanov" ) == "www@site.com" );
-	assert( c.getParticipantPosition( "Ivan Ivanov" ) == Position::Developer );
 
 	assert( c.getParticipantEmail( "Vitalka" ) == "you@example.com" );
-	assert( c.getParticipantPosition( "Vitalka" ) == Position::Intern );
 }
 
 
@@ -46,7 +43,7 @@ DECLARE_OOP_TEST( meetings_1_3_add_participant_with_empty_full_name )
 	Controller c;
 
 	ASSERT_THROWS(
-			c.addParticipant( "", "you@example.com", Position::Developer );
+			c.addParticipant( "", "you@example.com" );
 		,	Messages::EmptyParticipantName
 	);
 }
@@ -60,7 +57,7 @@ DECLARE_OOP_TEST( meetings_1_4_add_participant_with_empty_email )
 	Controller c;
 
 	ASSERT_THROWS(
-			c.addParticipant( "Ivan Ivanov", "", Position::Manager );
+			c.addParticipant( "Ivan Ivanov", "" );
 		,	Messages::EmptyParticipantEmail
 	);
 }
@@ -72,10 +69,10 @@ DECLARE_OOP_TEST( meetings_1_4_add_participant_with_empty_email )
 DECLARE_OOP_TEST( meetings_1_5_add_participant_with_duplicate_full_name )
 {
 	Controller c;
-	c.addParticipant( "Ivan Ivanov", "www@site.com", Position::Manager );
+	c.addParticipant( "Ivan Ivanov", "www@site.com" );
 
 	ASSERT_THROWS(
-			c.addParticipant( "Ivan Ivanov", "you@example.com", Position::Intern );
+			c.addParticipant( "Ivan Ivanov", "you@example.com" );
 		,	Messages::DuplicateParticipant
 	);
 }
@@ -87,10 +84,10 @@ DECLARE_OOP_TEST( meetings_1_5_add_participant_with_duplicate_full_name )
 DECLARE_OOP_TEST( meetings_1_6_add_participant_with_duplicate_email )
 {
 	Controller c;
-	c.addParticipant( "Ivan Ivanov", "sss@site.com", Position::Manager );
+	c.addParticipant( "Ivan Ivanov", "sss@site.com" );
 
 	ASSERT_THROWS(
-			c.addParticipant( "Jack", "sss@site.com", Position::Developer );
+			c.addParticipant( "Jack", "sss@site.com" );
 		,	Messages::DuplicateEmail
 	);
 }
@@ -102,8 +99,8 @@ DECLARE_OOP_TEST( meetings_1_6_add_participant_with_duplicate_email )
 DECLARE_OOP_TEST( meetings_1_7_add_participant_with_duplicate_position )
 {
 	Controller c;
-	c.addParticipant( "Ivan Ivanov", "ivan@site.com", Position::Manager );
-	c.addParticipant( "Petr Petrov", "petr@site.com", Position::Manager );
+	c.addParticipant( "Ivan Ivanov", "ivan@site.com" );
+	c.addParticipant( "Petr Petrov", "petr@site.com" );
 }
 
 
@@ -113,11 +110,11 @@ DECLARE_OOP_TEST( meetings_1_7_add_participant_with_duplicate_position )
 DECLARE_OOP_TEST( meetings_1_8_add_participant_obtain_email_by_empty_name )
 {
 	Controller c;
-	c.addParticipant( "Ivan Ivanov", "ivan@site.com", Position::Manager );
+	c.addParticipant( "Ivan Ivanov", "ivan@site.com" );
 
 	ASSERT_THROWS(
 			c.getParticipantEmail( "" )
-		,	Messages::EmptyParticipantName
+		,	Messages::ParticipantCannotBeFound
 	);
 }
 
@@ -128,40 +125,10 @@ DECLARE_OOP_TEST( meetings_1_8_add_participant_obtain_email_by_empty_name )
 DECLARE_OOP_TEST( meetings_1_9_add_participant_obtain_email_by_unknown_name )
 {
 	Controller c;
-	c.addParticipant( "Ivan Ivanov", "ivan@site.com", Position::Manager );
+	c.addParticipant( "Ivan Ivanov", "ivan@site.com" );
 
 	ASSERT_THROWS(
 			c.getParticipantEmail( "Petr" )
-		,	Messages::ParticipantCannotBeFound
-	);
-}
-
-
-/*****************************************************************************/
-
-
-DECLARE_OOP_TEST( meetings_1_10_add_participant_obtain_position_by_empty_name )
-{
-	Controller c;
-	c.addParticipant( "Ivan Ivanov", "god@site.com", Position::Developer );
-
-	ASSERT_THROWS(
-			c.getParticipantPosition( "" )
-		,	Messages::EmptyParticipantName
-	);
-}
-
-
-/*****************************************************************************/
-
-
-DECLARE_OOP_TEST( meetings_1_11_add_participant_obtain_position_by_unknown_name )
-{
-	Controller c;
-	c.addParticipant( "Ivan Ivanov", "god@site.com", Position::Intern );
-
-	ASSERT_THROWS(
-			c.getParticipantPosition( "Petr Petrov" )
 		,	Messages::ParticipantCannotBeFound
 	);
 }
@@ -309,7 +276,7 @@ DECLARE_OOP_TEST( meetings_2_9_add_meeting_obtain_start_time_for_missing_meeting
 DECLARE_OOP_TEST( meetings_3_1_add_meeting_participant_one )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Developer );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 100, "meeting #1", DateTime() );
 
 	c.addMeetingParticipant( 100, "Rover" );
@@ -327,8 +294,8 @@ DECLARE_OOP_TEST( meetings_3_1_add_meeting_participant_one )
 DECLARE_OOP_TEST( meetings_3_2_add_meeting_participant_several_for_one_meeting )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Developer );
-	c.addParticipant( "Manager", "manager@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Manager", "manager@example.com" );
 	c.addMeeting( 100, "meeting #1", DateTime() );
 
 	c.addMeetingParticipant( 100, "Rover" );
@@ -349,10 +316,10 @@ DECLARE_OOP_TEST( meetings_3_2_add_meeting_participant_several_for_one_meeting )
 DECLARE_OOP_TEST( meetings_3_3_add_meeting_participant_several_for_several_meetings )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Developer );
-	c.addParticipant( "Manager", "manager@example.com", Position::Manager );
-	c.addParticipant( "Jack", "jack@example.com", Position::Intern );
-	c.addParticipant( "Pack", "pack@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Manager", "manager@example.com" );
+	c.addParticipant( "Jack", "jack@example.com" );
+	c.addParticipant( "Pack", "pack@example.com" );
 	c.addMeeting( 100, "meeting #1", DateTime() );
 	c.addMeeting( 101, "meeting #2", DateTime() );
 
@@ -380,7 +347,7 @@ DECLARE_OOP_TEST( meetings_3_3_add_meeting_participant_several_for_several_meeti
 DECLARE_OOP_TEST( meetings_3_4_add_meeting_participant_twice_add_of_the_same_participant )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 600, "meeting #1", DateTime() );
 
 	c.addMeetingParticipant( 600, "Rover" );
@@ -400,7 +367,7 @@ DECLARE_OOP_TEST( meetings_3_4_add_meeting_participant_twice_add_of_the_same_par
 DECLARE_OOP_TEST( meetings_3_5_add_meeting_participant_for_unknown_meeting )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 600, "meeting #1", DateTime() );
 
 	ASSERT_THROWS(
@@ -416,12 +383,12 @@ DECLARE_OOP_TEST( meetings_3_5_add_meeting_participant_for_unknown_meeting )
 DECLARE_OOP_TEST( meetings_3_6_add_meeting_participant_with_empty_participant_name )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 400, "meeting #1", DateTime() );
 
 	ASSERT_THROWS(
 			c.addMeetingParticipant( 400, "" );
-		,	Messages::EmptyParticipantName
+		,	Messages::ParticipantCannotBeFound
 	);
 }
 
@@ -432,7 +399,7 @@ DECLARE_OOP_TEST( meetings_3_6_add_meeting_participant_with_empty_participant_na
 DECLARE_OOP_TEST( meetings_3_7_add_meeting_participant_with_unknown_participant )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 400, "meeting #1", DateTime() );
 
 	ASSERT_THROWS(
@@ -448,7 +415,7 @@ DECLARE_OOP_TEST( meetings_3_7_add_meeting_participant_with_unknown_participant 
 DECLARE_OOP_TEST( meetings_3_8_add_meeting_participant_obtain_participants_list_for_empty_meeting )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 600, "meeting #1", DateTime() );
 
 	std::vector< std::string > expectation;
@@ -462,7 +429,7 @@ DECLARE_OOP_TEST( meetings_3_8_add_meeting_participant_obtain_participants_list_
 DECLARE_OOP_TEST( meetings_3_9_add_meeting_participant_obtain_participants_list_for_missing_meeting )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 400, "meeting #1", DateTime() );
 
 	ASSERT_THROWS(
@@ -478,7 +445,7 @@ DECLARE_OOP_TEST( meetings_3_9_add_meeting_participant_obtain_participants_list_
 DECLARE_OOP_TEST( meetings_3_10_1_meeting_validation_less_than_2_participants )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 
 	DateTime time( 2042, 7, 7, 15, 0, 0 );
 	c.addMeeting( 12456, "meeting #2234", time );
@@ -498,8 +465,8 @@ DECLARE_OOP_TEST( meetings_3_10_1_meeting_validation_less_than_2_participants )
 DECLARE_OOP_TEST( meetings_3_10_2_meeting_validation_exactly_2_participants )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
-	c.addParticipant( "Manager", "manager@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Manager", "manager@example.com" );
 
 	DateTime time( 2042, 7, 7, 15, 0, 0 );
 	c.addMeeting( 12456, "meeting #2234", time );
@@ -517,9 +484,9 @@ DECLARE_OOP_TEST( meetings_3_10_2_meeting_validation_exactly_2_participants )
 DECLARE_OOP_TEST( meetings_3_10_3_meeting_validation_more_than_2_participants )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
-	c.addParticipant( "Manager", "manager@example.com", Position::Manager );
-	c.addParticipant( "Vitalka", "vitalka@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Manager", "manager@example.com" );
+	c.addParticipant( "Vitalka", "vitalka@example.com" );
 
 	DateTime time( 2042, 7, 7, 15, 0, 0 );
 	c.addMeeting( 12456, "meeting #2234", time );
@@ -538,9 +505,9 @@ DECLARE_OOP_TEST( meetings_3_10_3_meeting_validation_more_than_2_participants )
 DECLARE_OOP_TEST( meetings_3_10_4_meeting_validation_validate_for_missing_meeting )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
-	c.addParticipant( "Manager", "manager@example.com", Position::Manager );
-	c.addParticipant( "Vitalka", "vitalka@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Manager", "manager@example.com" );
+	c.addParticipant( "Vitalka", "vitalka@example.com" );
 
 	DateTime time( 2042, 7, 7, 15, 0, 0 );
 	c.addMeeting( 12456, "meeting #2234", time );
@@ -562,7 +529,7 @@ DECLARE_OOP_TEST( meetings_3_10_4_meeting_validation_validate_for_missing_meetin
 DECLARE_OOP_TEST( meetings_3_11_add_meeting_participant_the_same_participant_for_several_meetings )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 
 	DateTime time1( 2042, 7, 7, 15, 0, 0 );
 	DateTime time2( 2042, 8, 8, 15, 0, 0 );
@@ -580,7 +547,7 @@ DECLARE_OOP_TEST( meetings_3_11_add_meeting_participant_the_same_participant_for
 DECLARE_OOP_TEST( meetings_3_12_add_meeting_participant_the_same_participant_for_several_meetings_at_the_same_time )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 
 	DateTime time( 2042, 7, 7, 15, 0, 0 );
 	c.addMeeting( 12456, "meeting #2234", time );
@@ -597,7 +564,7 @@ DECLARE_OOP_TEST( meetings_3_12_add_meeting_participant_the_same_participant_for
 DECLARE_OOP_TEST( meetings_4_1_remove_meeting_participant_from_meeting_with_one_participant )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 69, "meeting #1", DateTime() );
 	c.addMeetingParticipant( 69, "Rover" );
 	c.removeMeetingParticipant( 69, "Rover" );
@@ -613,8 +580,8 @@ DECLARE_OOP_TEST( meetings_4_1_remove_meeting_participant_from_meeting_with_one_
 DECLARE_OOP_TEST( meetings_4_2_remove_meeting_participant_from_meeting_with_several_participants )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Developer );
-	c.addParticipant( "Jack", "jack@example.com", Position::Intern );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Jack", "jack@example.com" );
 	c.addMeeting( 100, "meeting", DateTime() );
 
 	c.addMeetingParticipant( 100, "Rover" );
@@ -635,12 +602,12 @@ DECLARE_OOP_TEST( meetings_4_2_remove_meeting_participant_from_meeting_with_seve
 DECLARE_OOP_TEST( meetings_4_3_remove_meeting_participant_from_empty_meeting )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 69, "meeting #1", DateTime() );
 
 	ASSERT_THROWS(
 			c.removeMeetingParticipant( 69, "Rover" );
-		,	Messages::ParticipantCannotBeFound
+		,	Messages::ParticipantNotPartOfMeeting
 	);
 }
 
@@ -651,7 +618,7 @@ DECLARE_OOP_TEST( meetings_4_3_remove_meeting_participant_from_empty_meeting )
 DECLARE_OOP_TEST( meetings_4_4_remove_meeting_participant_from_missing_meeting )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 22, "meeting #1", DateTime() );
 
 	c.addMeetingParticipant( 22, "Rover" );
@@ -669,7 +636,7 @@ DECLARE_OOP_TEST( meetings_4_4_remove_meeting_participant_from_missing_meeting )
 DECLARE_OOP_TEST( meetings_4_5_remove_meeting_participant_unknown_participant )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 22, "meeting #1", DateTime() );
 
 	c.addMeetingParticipant( 22, "Rover" );
@@ -687,7 +654,7 @@ DECLARE_OOP_TEST( meetings_4_5_remove_meeting_participant_unknown_participant )
 DECLARE_OOP_TEST( meetings_5_1_moderator_no_moderator_in_meeting_by_default )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 22, "meeting #1", DateTime() );
 
 	c.addMeetingParticipant( 22, "Rover" );
@@ -702,7 +669,7 @@ DECLARE_OOP_TEST( meetings_5_1_moderator_no_moderator_in_meeting_by_default )
 DECLARE_OOP_TEST( meetings_5_2_moderator_set_moderator_for_meeting_with_one_participant )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
+	c.addParticipant( "Rover", "rover@example.com" );
 	c.addMeeting( 22, "meeting #1", DateTime() );
 
 	c.addMeetingParticipant( 22, "Rover" );
@@ -718,9 +685,9 @@ DECLARE_OOP_TEST( meetings_5_2_moderator_set_moderator_for_meeting_with_one_part
 DECLARE_OOP_TEST( meetings_5_3_moderator_set_moderator_for_meeting_with_several_participants )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
-	c.addParticipant( "Ivan", "ivan@example.com", Position::Developer );
-	c.addParticipant( "Petr", "petr@example.com", Position::Developer );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Ivan", "ivan@example.com" );
+	c.addParticipant( "Petr", "petr@example.com" );
 	c.addMeeting( 42, "meeting #42", DateTime() );
 
 	c.addMeetingParticipant( 42, "Rover" );
@@ -738,9 +705,9 @@ DECLARE_OOP_TEST( meetings_5_3_moderator_set_moderator_for_meeting_with_several_
 DECLARE_OOP_TEST( meetings_5_4_moderator_set_moderator_for_meeting_with_empty_participants )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
-	c.addParticipant( "Ivan", "ivan@example.com", Position::Developer );
-	c.addParticipant( "Petr", "petr@example.com", Position::Developer );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Ivan", "ivan@example.com" );
+	c.addParticipant( "Petr", "petr@example.com" );
 	c.addMeeting( 42, "meeting #42", DateTime() );
 
 	ASSERT_THROWS(
@@ -756,9 +723,9 @@ DECLARE_OOP_TEST( meetings_5_4_moderator_set_moderator_for_meeting_with_empty_pa
 DECLARE_OOP_TEST( meetings_5_5_moderator_participant_must_be_added_to_meeting_to_be_a_moderator )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
-	c.addParticipant( "Ivan", "ivan@example.com", Position::Developer );
-	c.addParticipant( "Petr", "petr@example.com", Position::Developer );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Ivan", "ivan@example.com" );
+	c.addParticipant( "Petr", "petr@example.com" );
 	c.addMeeting( 42, "meeting #42", DateTime() );
 	c.addMeeting( 43, "meeting #43", DateTime() );
 
@@ -779,9 +746,9 @@ DECLARE_OOP_TEST( meetings_5_5_moderator_participant_must_be_added_to_meeting_to
 DECLARE_OOP_TEST( meetings_5_6_moderator_set_moderator_twice )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
-	c.addParticipant( "Ivan", "ivan@example.com", Position::Developer );
-	c.addParticipant( "Petr", "petr@example.com", Position::Developer );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Ivan", "ivan@example.com" );
+	c.addParticipant( "Petr", "petr@example.com" );
 	c.addMeeting( 1, "meeting #1", DateTime() );
 
 	c.addMeetingParticipant( 1, "Rover" );
@@ -798,9 +765,9 @@ DECLARE_OOP_TEST( meetings_5_6_moderator_set_moderator_twice )
 DECLARE_OOP_TEST( meetings_5_7_moderator_set_another_moderator )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
-	c.addParticipant( "Ivan", "ivan@example.com", Position::Developer );
-	c.addParticipant( "Petr", "petr@example.com", Position::Developer );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Ivan", "ivan@example.com" );
+	c.addParticipant( "Petr", "petr@example.com" );
 	c.addMeeting( 1, "meeting #1", DateTime() );
 
 	c.addMeetingParticipant( 1, "Rover" );
@@ -819,9 +786,9 @@ DECLARE_OOP_TEST( meetings_5_7_moderator_set_another_moderator )
 DECLARE_OOP_TEST( meetings_5_8_moderator_obtain_moderator_name_for_missing_meeting )
 {
 	Controller c;
-	c.addParticipant( "Rover", "rover@example.com", Position::Manager );
-	c.addParticipant( "Ivan", "ivan@example.com", Position::Developer );
-	c.addParticipant( "Petr", "petr@example.com", Position::Developer );
+	c.addParticipant( "Rover", "rover@example.com" );
+	c.addParticipant( "Ivan", "ivan@example.com" );
+	c.addParticipant( "Petr", "petr@example.com" );
 	c.addMeeting( 42, "meeting #42", DateTime() );
 
 	c.addMeetingParticipant( 42, "Rover" );
@@ -955,10 +922,10 @@ DECLARE_OOP_TEST( meetings_6_7_agenda_add_two_equal_rows )
 
 void generateModel( Controller & _c )
 {
-	_c.addParticipant( "Ivan", "ivan@oop", Position::Developer );
-	_c.addParticipant( "Vitaliy", "vitaliy@oop", Position::Developer );
-	_c.addParticipant( "Inokentiy", "inokentiy@oop", Position::Intern );
-	_c.addParticipant( "Cucumber", "cucumber@oop", Position::Manager );
+	_c.addParticipant( "Ivan", "ivan@oop" );
+	_c.addParticipant( "Vitaliy", "vitaliy@oop" );
+	_c.addParticipant( "Inokentiy", "inokentiy@oop" );
+	_c.addParticipant( "Cucumber", "cucumber@oop" );
 
 	_c.addMeeting( 1, "meeting #1", DateTime( 3000, 1, 1, 12, 0, 0 ) );
 	_c.addMeeting( 2, "meeting #2", DateTime( 3001, 1, 1, 12, 0, 0 ) );
@@ -1031,32 +998,7 @@ void generateModel( Controller & _c )
 /*****************************************************************************/
 
 
-DECLARE_OOP_TEST( meetings_7_1_queries_get_model )
-{
-	Controller c;
-	generateModel( c );
-
-	// NOTE: Meeting = moderator, participants
-	// NOTE: Participants were sorted in alphabetical order, except Moderator.
-	// NOTE: Moderator always stays on the first place
-	std::map< std::string, std::vector< std::string > > expectation;
-	expectation[ "meeting #1" ] = { "Ivan", "Ivan", "Vitaliy" };
-	expectation[ "meeting #2" ] = { "Vitaliy", "Inokentiy", "Vitaliy" };
-	expectation[ "meeting #3" ] = { "Inokentiy", "Cucumber", "Inokentiy" };
-	expectation[ "meeting #4" ] = { "Ivan", "Cucumber", "Ivan" };
-	expectation[ "meeting #5" ] = { "Inokentiy", "Cucumber", "Inokentiy", "Ivan", "Vitaliy" };
-	expectation[ "meeting #6" ] = { "-", "Cucumber" };
-	expectation[ "meeting #7" ] = { "Inokentiy", "Cucumber", "Inokentiy", "Ivan", "Vitaliy"  };
-	expectation[ "meeting #8" ] = { "-", "Cucumber", "Ivan" };
-
-	assert( c.getModel() == expectation );
-}
-
-
-/*****************************************************************************/
-
-
-DECLARE_OOP_TEST( meetings_7_2_queries_get_most_frequent_moderator_name )
+DECLARE_OOP_TEST( meetings_7_1_queries_get_most_frequent_moderator_name )
 {
 	Controller c;
 	generateModel( c );
@@ -1068,7 +1010,7 @@ DECLARE_OOP_TEST( meetings_7_2_queries_get_most_frequent_moderator_name )
 /*****************************************************************************/
 
 
-DECLARE_OOP_TEST( meetings_7_3_queries_get_meeting_with_longest_agenda )
+DECLARE_OOP_TEST( meetings_7_2_queries_get_meeting_with_longest_agenda )
 {
 	Controller c;
 	generateModel( c );
@@ -1080,7 +1022,7 @@ DECLARE_OOP_TEST( meetings_7_3_queries_get_meeting_with_longest_agenda )
 /*****************************************************************************/
 
 
-DECLARE_OOP_TEST( meetings_7_4_queries_get_overlaps )
+DECLARE_OOP_TEST( meetings_7_3_queries_get_overlaps )
 {
 	Controller c;
 	generateModel( c );

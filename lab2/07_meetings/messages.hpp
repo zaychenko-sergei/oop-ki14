@@ -14,6 +14,7 @@ namespace Messages
 	const char * const EmptyParticipantEmail = "Participant email is empty";
 	const char * const MeetingCannotBeFound = "Meeting cannot be found";
 	const char * const ParticipantCannotBeFound = "Participant cannot be found";
+	const char * const ParticipantNotPartOfMeeting = "Participant was not added to a meeting";
 	const char * const DuplicateParticipant = "Participant had already been added";
 	const char * const DuplicateMeeting = "Meeting had already been added";
 	const char * const DuplicateEmail = "Email has already beed added";

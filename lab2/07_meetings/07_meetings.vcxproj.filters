@@ -44,9 +44,6 @@
     <ClInclude Include="datetime.hpp">
       <Filter>Model</Filter>
     </ClInclude>
-    <ClInclude Include="position.hpp">
-      <Filter>Model</Filter>
-    </ClInclude>
     <ClInclude Include="testslib.hpp">
       <Filter>Test</Filter>
     </ClInclude>

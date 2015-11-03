@@ -6,10 +6,10 @@
 /*****************************************************************************/
 
 #include "datetime.hpp"
-#include "position.hpp"
 
 #include <string>
 #include <vector>
+#include <map>
 
 /*****************************************************************************/
 
@@ -36,12 +36,9 @@ public:
 	void addParticipant (
 			const std::string & _fullName
 		,	const std::string & _email
-		,	Position _position
 	);
 
 	const std::string & getParticipantEmail ( const std::string & _fullName ) const;
-
-	Position getParticipantPosition ( const std::string & _fullName ) const;
 
 /*-----------------------------------------------------------------*/
 
@@ -76,9 +73,6 @@ public:
 	std::vector< std::string > getMeetingAgenda ( int _meetingId ) const;
 
 /*-----------------------------------------------------------------*/
-
-	// NOTE: Key - meeting, Value - participants
-	std::map< std::string, std::vector< std::string > > getModel () const;
 
 	std::string getMostFrequentModeratorName () const;
 
