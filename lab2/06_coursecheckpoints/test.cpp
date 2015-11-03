@@ -91,7 +91,7 @@ DECLARE_OOP_TEST( courses_1_7_add_course_obtain_control_form_by_empty_name )
 
 	ASSERT_THROWS(
 			c.getCourseControlForm( "" );
-		,	Messages::EmptyCourseName
+		,	Messages::CourseCannotBeFound
 	);
 }
 
@@ -157,7 +157,7 @@ DECLARE_OOP_TEST( courses_2_3_add_checkpoint_with_empty_course_name )
 
 	ASSERT_THROWS(
 			c.addCheckpoint( "", "fresh", 99 );
-		,	Messages::EmptyCourseName
+		,	Messages::CourseCannotBeFound
 	);
 }
 
@@ -226,7 +226,7 @@ DECLARE_OOP_TEST( courses_2_6_2_add_checkpoint_obtain_max_mark_with_empty_course
 	
 	ASSERT_THROWS(
 			c.getCheckpointMaxMark( "", "fresh" );
-		,	Messages::EmptyCourseName
+		,	Messages::CourseCannotBeFound
 	);
 }
 
@@ -255,10 +255,10 @@ DECLARE_OOP_TEST( courses_2_7_1_add_checkpoint_obtain_min_mark_correct )
 	Controller c;
 	c.addCourse( "cucumber", ControlForm::Exam );
 	c.addCheckpoint( "cucumber", "fresh", 67 );
-	c.addCheckpoint( "cucumber", "cake", 34 );
+	c.addCheckpoint( "cucumber", "cake", 35 );
 
-	assert( equalDoubles( c.getCheckpointMinMark( "cucumber", "fresh" ), 40.2 ) );
-	assert( equalDoubles( c.getCheckpointMinMark( "cucumber", "cake" ), 20.4 ) );
+	assert( c.getCheckpointMinMark( "cucumber", "fresh" ) == 40 );
+	assert( c.getCheckpointMinMark( "cucumber", "cake" )  == 21 );
 }
 
 
@@ -273,7 +273,7 @@ DECLARE_OOP_TEST( courses_2_7_2_add_checkpoint_obtain_min_mark_with_empty_course
 	
 	ASSERT_THROWS(
 			c.getCheckpointMinMark( "", "fresh" );
-		,	Messages::EmptyCourseName
+		,	Messages::CourseCannotBeFound
 	);
 }
 
@@ -318,7 +318,7 @@ DECLARE_OOP_TEST( courses_2_8_2_add_checkpoint_validate_without_checkpoints )
 
 	ASSERT_THROWS(
 			c.validateCourseCheckpoints( "cucumber" );
-		,	Messages::CheckpointsCountMismatch
+		,	Messages::NoCheckpointsFound
 	);
 }
 
@@ -368,7 +368,7 @@ DECLARE_OOP_TEST( courses_2_8_5_add_checkpoint_validate_by_empty_course_name )
 
 	ASSERT_THROWS(
 			c.validateCourseCheckpoints( "" );
-		,	Messages::EmptyCourseName
+		,	Messages::CourseCannotBeFound
 	);
 }
 
@@ -526,7 +526,7 @@ DECLARE_OOP_TEST( courses_3_5_4_add_student_checkpoint_with_empty_student_name )
 
 	ASSERT_THROWS(
 			c.addStudentCheckpoint( "", "math", "division", 41 );
-		,	Messages::EmptyStudentName
+		,	Messages::StudentCannotBeFound
 	);
 }
 
@@ -546,7 +546,7 @@ DECLARE_OOP_TEST( courses_3_5_5_add_student_checkpoint_with_empty_course_name )
 
 	ASSERT_THROWS(
 			c.addStudentCheckpoint( "Petr", "", "division", 41 );
-		,	Messages::EmptyCourseName
+		,	Messages::CourseCannotBeFound
 	);
 }
 
@@ -567,7 +567,7 @@ DECLARE_OOP_TEST( courses_3_5_6_add_student_checkpoint_with_empty_checkpoint_nam
 
 	ASSERT_THROWS(
 			c.addStudentCheckpoint( "Petr", "math", "", 41 );
-		,	Messages::EmptyCheckpointName
+		,	Messages::CheckpointCannotBeFound
 	);
 }
 
@@ -716,7 +716,7 @@ DECLARE_OOP_TEST( courses_3_6_2_obtain_checkpoint_mark_with_empty_student_name )
 
 	ASSERT_THROWS(
 			c.getStudentCheckpointMark( "", "oop", "classes" );
-		,	Messages::EmptyStudentName
+		,	Messages::StudentCannotBeFound
 	);
 }
 
@@ -739,7 +739,7 @@ DECLARE_OOP_TEST( courses_3_6_3_obtain_checkpoint_mark_with_empty_course_name )
 
 	ASSERT_THROWS(
 			c.getStudentCheckpointMark( "Ivanko", "", "classes" );
-		,	Messages::EmptyCourseName
+		,	Messages::CourseCannotBeFound
 	);
 }
 
@@ -762,7 +762,7 @@ DECLARE_OOP_TEST( courses_3_6_4_obtain_checkpoint_mark_with_empty_checkpoint_nam
 
 	ASSERT_THROWS(
 			c.getStudentCheckpointMark( "Ivanko", "oop", "" );
-		,	Messages::EmptyCheckpointName
+		,	Messages::CheckpointCannotBeFound
 	);
 }
 
@@ -852,10 +852,8 @@ DECLARE_OOP_TEST( courses_3_7_duplicate_mark )
 	c.addStudentCheckpoint( "Ivanko", "oop", "classes", 50 );
 	c.addStudentCheckpoint( "Ivanko", "oop", "pointers", 41 );
 
-	ASSERT_THROWS(
-			c.addStudentCheckpoint( "Ivanko", "oop", "pointers", 41 );
-		,	Messages::DuplicateCheckpointMark
-	);
+	c.addStudentCheckpoint( "Ivanko", "oop", "pointers", 45 );
+	assert( c.getStudentCheckpointMark( "Ivanko", "oop", "pointers" ) == 45 );
 }
 
 
@@ -874,10 +872,7 @@ DECLARE_OOP_TEST( courses_3_8_unpassed_checkpoint )
 	c.addStudent( "Ivanko" );
 	c.addStudentCheckpoint( "Ivanko", "oop", "classes", 50 );
 
-	ASSERT_THROWS(
-			c.getStudentCheckpointMark( "Ivanko", "oop", "pointers" );
-		,	Messages::MarkCannotBeFound
-	);
+	assert( c.getStudentCheckpointMark( "Ivanko", "oop", "pointers" ) == 0 );
 }
 
 
@@ -1060,12 +1055,7 @@ DECLARE_OOP_TEST( courses_4_4_students_with_best_average_score )
 	Controller c;
 	generateModel( c );
 
-	// NOTE: Students were sorted in alphabetical order
-	std::vector< std::string > expectation;
-	expectation.push_back( "Copypaster" );
-	expectation.push_back( "Ivan" );
-
-	assert( c.getStudentsWithBestAverageScore() == expectation );
+	assert( c.getStudentWithBestAverageScore() == "Copypaster" );
 }
 
 

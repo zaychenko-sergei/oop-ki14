@@ -52,12 +52,12 @@ public:
 	int getCheckpointMaxMark (
 			const std::string & _courseName
 		,	const std::string & _checkpointName
-	);
+	) const;
 
-	double getCheckpointMinMark (
+	int getCheckpointMinMark (
 			const std::string & _courseName
 		,	const std::string & _checkpointName
-	);
+	) const;
 
 /*-----------------------------------------------------------------*/
 
@@ -84,7 +84,7 @@ public:
 
 	std::vector< std::pair< std::string, double > > getAverageScoreByCourse () const;
 
-	std::vector< std::string > getStudentsWithBestAverageScore () const;
+	std::string getStudentWithBestAverageScore () const;
 
 /*-----------------------------------------------------------------*/
 
