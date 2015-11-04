@@ -5,21 +5,15 @@
 
 /*****************************************************************************/
 
-#include "date.hpp"
-
-#include <iostream>
-
-/*****************************************************************************/
-
 
 class DateTime
 {
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 public:
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 	DateTime();
 	DateTime( int _year, int _month, int _day, int _hours, int _minutes, int _seconds );
@@ -33,39 +27,31 @@ public:
 	int getMinutes() const;
 	int getSeconds() const;
 
-	Date getDate() const;
-
 	bool isLeapYear() const;
 
-	bool operator == ( const DateTime & _d ) const;
-	bool operator != ( const DateTime & _d ) const;
-	bool operator < ( const DateTime & _d ) const;
-	bool operator <= ( const DateTime & _d ) const;
-	bool operator > ( const DateTime & _d ) const;
-	bool operator >= ( const DateTime & _d ) const;
+	bool operator == ( DateTime _d ) const;
+	bool operator != ( DateTime _d ) const;
+	bool operator < ( DateTime _d ) const;
+	bool operator <= ( DateTime _d ) const;
+	bool operator > ( DateTime _d ) const;
+	bool operator >= ( DateTime _d ) const;
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 private:
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 	bool isValid() const;
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 	int m_year, m_month, m_day, m_hours, m_minutes, m_seconds;
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 };
 
-
-/*****************************************************************************/
-
-std::ostream & operator << ( std::ostream & o, const DateTime & d );
-
-std::istream & operator >> ( std::istream & i, DateTime & d );
 
 /*****************************************************************************/
 

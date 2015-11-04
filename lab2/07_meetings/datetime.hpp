@@ -13,11 +13,11 @@
 class DateTime
 {
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 public:
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 	DateTime();
 	DateTime( int _year, int _month, int _day, int _hours, int _minutes, int _seconds );
@@ -33,33 +33,33 @@ public:
 
 	bool isLeapYear() const;
 
-	bool operator == ( const DateTime & _d ) const;
-	bool operator != ( const DateTime & _d ) const;
-	bool operator < ( const DateTime & _d ) const;
-	bool operator <= ( const DateTime & _d ) const;
-	bool operator > ( const DateTime & _d ) const;
-	bool operator >= ( const DateTime & _d ) const;
+	bool operator == ( DateTime _d ) const;
+	bool operator != ( DateTime _d ) const;
+	bool operator < ( DateTime _d ) const;
+	bool operator <= ( DateTime _d ) const;
+	bool operator > ( DateTime _d ) const;
+	bool operator >= ( DateTime _d ) const;
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 private:
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 	bool isValid() const;
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 	int m_year, m_month, m_day, m_hours, m_minutes, m_seconds;
 
-/*-----------------------------------------------------------------*/
+	/*-----------------------------------------------------------------*/
 
 };
 
 
 /*****************************************************************************/
 
-std::ostream & operator << ( std::ostream & o, const DateTime & d );
+std::ostream & operator << ( std::ostream & o, DateTime d );
 
 std::istream & operator >> ( std::istream & i, DateTime & d );
 

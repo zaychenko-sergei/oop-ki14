@@ -6,6 +6,7 @@
 /*****************************************************************************/
 
 #include "datetime.hpp"
+#include "date.hpp"
 
 #include <vector>
 #include <string>
@@ -34,46 +35,46 @@ public:
 	void addOrganization (
 			const std::string & _name
 		,	const std::string & _registrationNumber
-		,	int _balance
+		,	double _initialBalance
 	);
 
 	const std::string & getRegistrationNumber ( const std::string & _organizationName ) const;
 
-	int getBalance ( const std::string & _organizationName ) const;
+	double getBalance ( const std::string & _organizationName ) const;
 
 /*-----------------------------------------------------------------*/
 
 	void addPayment (
-			const std::string & _senderOrganizationName
-		,	const std::string & _recieverOrganizationName
-		,	const std::string & _uniqueNumber
+			const std::string & _senderName
+		,	const std::string & _recieverName
+		,	const std::string & _paymentId
 		,	const std::string & _purpose
-		,	const DateTime & _dateTime
-		,	int _sum
+		,	DateTime _time
+		,	double _sum
 	);
 
 /*-----------------------------------------------------------------*/
 
-	const std::string & getPaymentSenderOrganizationName ( const std::string & _paymentUniqueNumber ) const;
+	const std::string & getSenderName ( const std::string & _paymentId ) const;
 
-	const std::string & getPaymentRecieverOrganizationName ( const std::string & _paymentUniqueNumber ) const;
+	const std::string & getReceiverName ( const std::string & _paymentId ) const;
 
-	const std::string & getPaymentPurpose ( const std::string & _paymentUniqueNumber ) const;
+	const std::string & getPaymentPurpose ( const std::string & _paymentId ) const;
 
-	const DateTime & getPaymentDateTime ( const std::string & _paymentUniqueNumber ) const;
+	DateTime getPaymentDateTime ( const std::string & _paymentId ) const;
 
-	int getPaymentSum ( const std::string & _paymentUniqueNumber ) const;
+	double getPaymentSum ( const std::string & _paymentId ) const;
 
 /*-----------------------------------------------------------------*/
 
 	// NOTE: First - organization name, second - balance
-	std::vector< std::pair< std::string, int > > getFinalBalances () const;
+	std::vector< std::pair< std::string, double > > getFinalBalances () const;
 
 	std::vector< std::string > getOrganizationsWithNegativeSaldo () const;
 
-	std::vector< std::string > getBiggestPaymentData () const;
+	std::string getIdOfBiggestPayment () const;
 
-	Date getDateWithBiggestTotalPaymentsAmount () const;
+	Date getDateWithBiggestTotalPayments () const;
 
 /*-----------------------------------------------------------------*/
 

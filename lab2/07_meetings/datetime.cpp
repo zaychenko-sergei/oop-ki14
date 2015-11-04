@@ -46,17 +46,17 @@ DateTime::DateTime( const char * _datetime, char _datesep, char _datetimesep, ch
 {
 	char sep1, sep2, spacesep, sep3, sep4;
 	int nMatched = sscanf(
-			_datetime
-		,	"%d%c%d%c%d%c%d%c%d%c%d"
-		,	&m_year, &sep1, &m_month, &sep2, &m_day,
-			&spacesep,
-			&m_hours, &sep3, &m_minutes, &sep4, &m_seconds
-	);
-	if (	nMatched != 11
-		||	sep1 != _datesep || sep2 != _datesep
-		||	spacesep != _datetimesep
-		||	sep3 != _timesep || sep4 != _timesep
-	)
+		_datetime
+		, "%d%c%d%c%d%c%d%c%d%c%d"
+		, &m_year, &sep1, &m_month, &sep2, &m_day,
+		&spacesep,
+		&m_hours, &sep3, &m_minutes, &sep4, &m_seconds
+		);
+	if ( nMatched != 11
+		|| sep1 != _datesep || sep2 != _datesep
+		|| spacesep != _datetimesep
+		|| sep3 != _timesep || sep4 != _timesep
+		)
 		throw std::logic_error( Messages::InvalidDateTimeFormat );
 
 	if ( !isValid() )
@@ -144,46 +144,7 @@ DateTime::isLeapYear() const
 
 
 bool
-DateTime::isValid() const
-{
-	if ( m_year == 0 )
-		return false;
-
-	if ( m_month < 1 || m_month > 12 )
-		return false;
-
-	if ( m_day < 1 )
-		return false;
-
-	else if ( m_month == 2 && isLeapYear() )
-		return m_day <= 29;
-
-	else
-	{
-		static const int s_daysInMonth[] = {
-			31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
-		};
-
-		if ( m_day > s_daysInMonth[ m_month - 1 ] )
-			return false;
-
-		else if ( m_hours < 0 || m_hours > 24 )
-			return false;
-		else if ( m_minutes < 0 || m_minutes > 60 )
-			return false;
-		else if ( m_seconds < 0 || m_seconds > 60 )
-			return false;
-	}
-
-	return true;
-}
-
-
-/*****************************************************************************/
-
-
-bool
-DateTime::operator == ( const DateTime & d ) const
+DateTime::operator == ( DateTime d ) const
 {
 	return m_year == d.getYear()
 		&& m_month == d.getMonth()
@@ -198,7 +159,7 @@ DateTime::operator == ( const DateTime & d ) const
 
 
 bool
-DateTime::operator != ( const DateTime & d ) const
+DateTime::operator != ( DateTime d ) const
 {
 	return !( *this == d );
 }
@@ -208,7 +169,7 @@ DateTime::operator != ( const DateTime & d ) const
 
 
 bool
-DateTime::operator < ( const DateTime & d ) const
+DateTime::operator < ( DateTime d ) const
 {
 	if ( m_year < d.getYear() )
 		return true;
@@ -248,7 +209,7 @@ DateTime::operator < ( const DateTime & d ) const
 
 
 bool
-DateTime::operator > ( const DateTime & d ) const
+DateTime::operator > ( DateTime d ) const
 {
 	return d < *this;
 }
@@ -258,7 +219,7 @@ DateTime::operator > ( const DateTime & d ) const
 
 
 bool
-DateTime::operator <= ( const DateTime & d ) const
+DateTime::operator <= ( DateTime d ) const
 {
 	return ( *this < d ) || ( *this == d );
 }
@@ -268,9 +229,48 @@ DateTime::operator <= ( const DateTime & d ) const
 
 
 bool
-DateTime::operator >= ( const DateTime & d ) const
+DateTime::operator >= ( DateTime d ) const
 {
 	return ( d < *this ) || ( *this == d );
+}
+
+
+/*****************************************************************************/
+
+
+bool
+DateTime::isValid() const
+{
+	if ( m_year == 0 )
+		return false;
+
+	if ( m_month < 1 || m_month > 12 )
+		return false;
+
+	if ( m_day < 1 )
+		return false;
+
+	else if ( m_month == 2 && isLeapYear() )
+		return m_day <= 29;
+
+	else
+	{
+		static const int s_daysInMonth[] = {
+			31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+		};
+
+		if ( m_day > s_daysInMonth[ m_month - 1 ] )
+			return false;
+
+		else if ( m_hours < 0 || m_hours > 24 )
+			return false;
+		else if ( m_minutes < 0 || m_minutes > 60 )
+			return false;
+		else if ( m_seconds < 0 || m_seconds > 60 )
+			return false;
+	}
+
+	return true;
 }
 
 

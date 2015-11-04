@@ -63,7 +63,7 @@ DECLARE_OOP_TEST( payments_1_4_organization_with_empty_registration_number )
 
 	ASSERT_THROWS(
 			c.addOrganization( "whiskas", "", 79 );
-		,	Messages::EmptyRegistrationNumber
+		,	Messages::InvalidRegistrationNumberFormat
 	);
 }
 
@@ -166,7 +166,7 @@ DECLARE_OOP_TEST( payments_1_10_organization_obtain_registration_number_by_empty
 
 	ASSERT_THROWS(
 			c.getRegistrationNumber( "" );
-		,	Messages::EmptyOrganizationName
+		,	Messages::OrganizationCannotBeFound
 	);
 }
 
@@ -196,7 +196,7 @@ DECLARE_OOP_TEST( payments_1_12_organization_obtain_balance_by_empty_name )
 
 	ASSERT_THROWS(
 			c.getBalance( "" );
-		,	Messages::EmptyOrganizationName
+		,	Messages::OrganizationCannotBeFound
 	);
 }
 
@@ -228,8 +228,8 @@ DECLARE_OOP_TEST( payments_2_1_payment_one )
 	DateTime dateTime( 2015, 1, 1, 12, 0, 0 );
 	c.addPayment( "mystic", "moon", "1", "Just for fun!", dateTime, 69 );
 
-	assert( c.getPaymentSenderOrganizationName( "1" ) == "mystic" );
-	assert( c.getPaymentRecieverOrganizationName( "1" ) == "moon" );
+	assert( c.getSenderName( "1" ) == "mystic" );
+	assert( c.getReceiverName( "1" ) == "moon" );
 	assert( c.getPaymentPurpose( "1" ) == "Just for fun!" );
 	assert( c.getPaymentDateTime( "1" ) == dateTime );
 	assert( c.getPaymentSum( "1" ) == 69 );
@@ -252,14 +252,14 @@ DECLARE_OOP_TEST( payments_2_2_1_payment_several_for_different_organizations )
 	DateTime dateTime2( 2013, 2, 18, 16, 44, 44 );
 	c.addPayment( "sausages", "kitty", "37", "Mew", dateTime2, 13 );
 
-	assert( c.getPaymentSenderOrganizationName( "556" ) == "mystic" );
-	assert( c.getPaymentRecieverOrganizationName( "556" ) == "moon" );
+	assert( c.getSenderName( "556" ) == "mystic" );
+	assert( c.getReceiverName( "556" ) == "moon" );
 	assert( c.getPaymentPurpose( "556" ) == "Rrrrr!" );
 	assert( c.getPaymentDateTime( "556" ) == dateTime1 );
 	assert( c.getPaymentSum( "556" ) == 12 );
 
-	assert( c.getPaymentSenderOrganizationName( "37" ) == "sausages" );
-	assert( c.getPaymentRecieverOrganizationName( "37" ) == "kitty" );
+	assert( c.getSenderName( "37" ) == "sausages" );
+	assert( c.getReceiverName( "37" ) == "kitty" );
 	assert( c.getPaymentPurpose( "37" ) == "Mew" );
 	assert( c.getPaymentDateTime( "37" ) == dateTime2 );
 	assert( c.getPaymentSum( "37" ) == 13 );
@@ -281,14 +281,14 @@ DECLARE_OOP_TEST( payments_2_2_2_payment_several_for_one_sender )
 	DateTime dateTime2( 2013, 2, 18, 16, 44, 44 );
 	c.addPayment( "sausages", "kitty", "37", "Mew", dateTime2, 13 );
 
-	assert( c.getPaymentSenderOrganizationName( "556" ) == "sausages" );
-	assert( c.getPaymentRecieverOrganizationName( "556" ) == "moon" );
+	assert( c.getSenderName( "556" ) == "sausages" );
+	assert( c.getReceiverName( "556" ) == "moon" );
 	assert( c.getPaymentPurpose( "556" ) == "Rrrrr!" );
 	assert( c.getPaymentDateTime( "556" ) == dateTime1 );
 	assert( c.getPaymentSum( "556" ) == 12 );
 
-	assert( c.getPaymentSenderOrganizationName( "37" ) == "sausages" );
-	assert( c.getPaymentRecieverOrganizationName( "37" ) == "kitty" );
+	assert( c.getSenderName( "37" ) == "sausages" );
+	assert( c.getReceiverName( "37" ) == "kitty" );
 	assert( c.getPaymentPurpose( "37" ) == "Mew" );
 	assert( c.getPaymentDateTime( "37" ) == dateTime2 );
 	assert( c.getPaymentSum( "37" ) == 13 );
@@ -310,14 +310,14 @@ DECLARE_OOP_TEST( payments_2_2_3_payment_several_for_one_receiver )
 	DateTime dateTime2( 2013, 2, 18, 16, 44, 44 );
 	c.addPayment( "sausages", "kitty", "37", "Mew", dateTime2, 13 );
 
-	assert( c.getPaymentSenderOrganizationName( "556" ) == "mystic" );
-	assert( c.getPaymentRecieverOrganizationName( "556" ) == "kitty" );
+	assert( c.getSenderName( "556" ) == "mystic" );
+	assert( c.getReceiverName( "556" ) == "kitty" );
 	assert( c.getPaymentPurpose( "556" ) == "Rrrrr!" );
 	assert( c.getPaymentDateTime( "556" ) == dateTime1 );
 	assert( c.getPaymentSum( "556" ) == 12 );
 
-	assert( c.getPaymentSenderOrganizationName( "37" ) == "sausages" );
-	assert( c.getPaymentRecieverOrganizationName( "37" ) == "kitty" );
+	assert( c.getSenderName( "37" ) == "sausages" );
+	assert( c.getReceiverName( "37" ) == "kitty" );
 	assert( c.getPaymentPurpose( "37" ) == "Mew" );
 	assert( c.getPaymentDateTime( "37" ) == dateTime2 );
 	assert( c.getPaymentSum( "37" ) == 13 );
@@ -338,14 +338,14 @@ DECLARE_OOP_TEST( payments_2_2_4_payment_several_for_the_same_sender_and_receive
 	DateTime dateTime2( 2013, 2, 18, 16, 44, 44 );
 	c.addPayment( "sausages", "kitty", "37", "Mew", dateTime2, 13 );
 
-	assert( c.getPaymentSenderOrganizationName( "556" ) == "sausages" );
-	assert( c.getPaymentRecieverOrganizationName( "556" ) == "kitty" );
+	assert( c.getSenderName( "556" ) == "sausages" );
+	assert( c.getReceiverName( "556" ) == "kitty" );
 	assert( c.getPaymentPurpose( "556" ) == "Rrrrr!" );
 	assert( c.getPaymentDateTime( "556" ) == dateTime1 );
 	assert( c.getPaymentSum( "556" ) == 12 );
 
-	assert( c.getPaymentSenderOrganizationName( "37" ) == "sausages" );
-	assert( c.getPaymentRecieverOrganizationName( "37" ) == "kitty" );
+	assert( c.getSenderName( "37" ) == "sausages" );
+	assert( c.getReceiverName( "37" ) == "kitty" );
 	assert( c.getPaymentPurpose( "37" ) == "Mew" );
 	assert( c.getPaymentDateTime( "37" ) == dateTime2 );
 	assert( c.getPaymentSum( "37" ) == 13 );
@@ -365,7 +365,7 @@ DECLARE_OOP_TEST( payments_2_3_payment_with_empty_sender_name )
 
 	ASSERT_THROWS(
 			c.addPayment( "", "kitty", "1", "Just for fun!", dateTime, 69 );
-		,	Messages::EmptyOrganizationName
+		,	Messages::OrganizationCannotBeFound
 	);
 }
 
@@ -383,7 +383,7 @@ DECLARE_OOP_TEST( payments_2_4_payment_with_empty_reciever_name )
 
 	ASSERT_THROWS(
 			c.addPayment( "sausages", "", "1", "Just for fun!", dateTime, 69 );
-		,	Messages::EmptyOrganizationName
+		,	Messages::OrganizationCannotBeFound
 	);
 }
 
@@ -401,7 +401,7 @@ DECLARE_OOP_TEST( payments_2_5_payment_with_empty_unique_number )
 
 	ASSERT_THROWS(
 			c.addPayment( "sausages", "kitty", "", "Just for fun!", dateTime, 69 );
-		,	Messages::EmptyPaymentNumber
+		,	Messages::EmptyPaymentId
 	);
 }
 
@@ -593,8 +593,8 @@ DECLARE_OOP_TEST( payments_2_16_payment_obtain_sender_name_by_empty_number )
 	c.addPayment( "mystic", "moon", "1", "Just for fun!", dateTime, 69 );
 
 	ASSERT_THROWS(
-			c.getPaymentSenderOrganizationName( "" );
-		,	Messages::EmptyPaymentNumber
+			c.getSenderName( "" );
+		,	Messages::PaymentCannotBeFound
 	);
 }
 
@@ -612,7 +612,7 @@ DECLARE_OOP_TEST( payments_2_17_payment_obtain_sender_name_for_missing_number )
 	c.addPayment( "mystic", "moon", "1", "Just for fun!", dateTime, 69 );
 
 	ASSERT_THROWS(
-			c.getPaymentSenderOrganizationName( "2" );
+			c.getSenderName( "2" );
 		,	Messages::PaymentCannotBeFound
 	);
 }
@@ -631,8 +631,8 @@ DECLARE_OOP_TEST( payments_2_18_payment_obtain_receiver_name_by_empty_number )
 	c.addPayment( "mystic", "moon", "1", "Just for fun!", dateTime, 69 );
 
 	ASSERT_THROWS(
-			c.getPaymentRecieverOrganizationName( "" );
-		,	Messages::EmptyPaymentNumber
+			c.getReceiverName( "" );
+		,	Messages::PaymentCannotBeFound
 	);
 }
 
@@ -650,7 +650,7 @@ DECLARE_OOP_TEST( payments_2_19_payment_obtain_receiver_name_for_missing_number 
 	c.addPayment( "mystic", "moon", "1", "Just for fun!", dateTime, 69 );
 
 	ASSERT_THROWS(
-			c.getPaymentRecieverOrganizationName( "2" );
+			c.getReceiverName( "2" );
 		,	Messages::PaymentCannotBeFound
 	);
 }
@@ -670,7 +670,7 @@ DECLARE_OOP_TEST( payments_2_20_payment_obtain_purpose_by_empty_number )
 
 	ASSERT_THROWS(
 			c.getPaymentPurpose( "" );
-		,	Messages::EmptyPaymentNumber
+		,	Messages::PaymentCannotBeFound
 	);
 }
 
@@ -708,7 +708,7 @@ DECLARE_OOP_TEST( payments_2_22_payment_obtain_datetime_by_empty_number )
 
 	ASSERT_THROWS(
 			c.getPaymentDateTime( "" );
-		,	Messages::EmptyPaymentNumber
+		,	Messages::PaymentCannotBeFound
 	);
 }
 
@@ -746,7 +746,7 @@ DECLARE_OOP_TEST( payments_2_24_payment_obtain_sum_by_empty_number )
 
 	ASSERT_THROWS(
 			c.getPaymentSum( "" );
-		,	Messages::EmptyPaymentNumber
+		,	Messages::PaymentCannotBeFound
 	);
 }
 
@@ -843,7 +843,7 @@ DECLARE_OOP_TEST( payments_3_1_queries_get_final_balances )
 	generateModel( c );
 
 	// NOTE: Organizations were sorted in alphabetical order
-	std::vector< std::pair< std::string, int > > expectation =
+	std::vector< std::pair< std::string, double > > expectation =
 	{
 			{ "Gofi", 0 }
 		,	{ "Qwer", -30 }
@@ -881,22 +881,7 @@ DECLARE_OOP_TEST( payments_3_3_queries_get_biggest_payment_data )
 	Controller c;
 	generateModel( c );
 
-	// NOTE: Date was generated by random numbers. Extract actual date by payment number
-	std::stringstream stream;
-	std::string dateTime;
-	stream << c.getPaymentDateTime( "21" );
-	stream >> dateTime;
-
-	std::vector< std::string > expectation =
-	{
-			"Qwer"
-		,	"Rute"
-		,	"21"
-		,	"payment #21"
-		,	dateTime
-		,	"50"
-	};
-	assert( c.getBiggestPaymentData() == expectation );
+	assert( c.getIdOfBiggestPayment() == "21" );
 }
 
 
@@ -909,7 +894,7 @@ DECLARE_OOP_TEST( payments_3_4_queries_get_date_with_biggest_total_payments_amou
 	generateModel( c );
 
 	Date expectation( 2010, 4, 1 );
-	assert( c.getDateWithBiggestTotalPaymentsAmount() == expectation );
+	assert( c.getDateWithBiggestTotalPayments() == expectation );
 }
 
 

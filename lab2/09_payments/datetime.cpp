@@ -46,17 +46,17 @@ DateTime::DateTime( const char * _datetime, char _datesep, char _datetimesep, ch
 {
 	char sep1, sep2, spacesep, sep3, sep4;
 	int nMatched = sscanf(
-			_datetime
-		,	"%d%c%d%c%d%c%d%c%d%c%d"
-		,	&m_year, &sep1, &m_month, &sep2, &m_day,
-			&spacesep,
-			&m_hours, &sep3, &m_minutes, &sep4, &m_seconds
-	);
-	if (	nMatched != 11
-		||	sep1 != _datesep || sep2 != _datesep
-		||	spacesep != _datetimesep
-		||	sep3 != _timesep || sep4 != _timesep
-	)
+		_datetime
+		, "%d%c%d%c%d%c%d%c%d%c%d"
+		, &m_year, &sep1, &m_month, &sep2, &m_day,
+		&spacesep,
+		&m_hours, &sep3, &m_minutes, &sep4, &m_seconds
+		);
+	if ( nMatched != 11
+		|| sep1 != _datesep || sep2 != _datesep
+		|| spacesep != _datetimesep
+		|| sep3 != _timesep || sep4 != _timesep
+		)
 		throw std::logic_error( Messages::InvalidDateTimeFormat );
 
 	if ( !isValid() )
@@ -127,16 +127,6 @@ DateTime::getSeconds() const
 /*****************************************************************************/
 
 
-Date
-DateTime::getDate() const
-{
-	return Date( m_year, m_month, m_day );
-}
-
-
-/*****************************************************************************/
-
-
 bool
 DateTime::isLeapYear() const
 {
@@ -147,6 +137,101 @@ DateTime::isLeapYear() const
 		return ( m_year % 400 == 0 );
 
 	return true;
+}
+
+
+/*****************************************************************************/
+
+
+bool
+DateTime::operator == ( DateTime d ) const
+{
+	return m_year == d.getYear()
+		&& m_month == d.getMonth()
+		&& m_day == d.getDay()
+		&& m_hours == d.getHours()
+		&& m_minutes == d.getMinutes()
+		&& m_seconds == d.getSeconds();
+}
+
+
+/*****************************************************************************/
+
+
+bool
+DateTime::operator != ( DateTime d ) const
+{
+	return !( *this == d );
+}
+
+
+/*****************************************************************************/
+
+
+bool
+DateTime::operator < ( DateTime d ) const
+{
+	if ( m_year < d.getYear() )
+		return true;
+
+	else if ( m_year == d.getYear() )
+	{
+		if ( m_month < d.getMonth() )
+			return true;
+
+		else if ( m_month == d.getMonth() )
+		{
+			if ( m_day < d.getDay() )
+				return true;
+
+			else if ( m_day == d.getDay() )
+			{
+				if ( m_hours < d.getHours() )
+					return true;
+
+				else if ( m_hours == d.getHours() )
+				{
+					if ( m_minutes < d.getMinutes() )
+						return true;
+
+					else if ( m_minutes == d.getMinutes() )
+						return m_seconds < d.getSeconds();
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
+
+/*****************************************************************************/
+
+
+bool
+DateTime::operator > ( DateTime d ) const
+{
+	return d < *this;
+}
+
+
+/*****************************************************************************/
+
+
+bool
+DateTime::operator <= ( DateTime d ) const
+{
+	return ( *this < d ) || ( *this == d );
+}
+
+
+/*****************************************************************************/
+
+
+bool
+DateTime::operator >= ( DateTime d ) const
+{
+	return ( d < *this ) || ( *this == d );
 }
 
 
@@ -190,125 +275,3 @@ DateTime::isValid() const
 
 
 /*****************************************************************************/
-
-
-bool
-DateTime::operator == ( const DateTime & d ) const
-{
-	return m_year == d.getYear()
-		&& m_month == d.getMonth()
-		&& m_day == d.getDay()
-		&& m_hours == d.getHours()
-		&& m_minutes == d.getMinutes()
-		&& m_seconds == d.getSeconds();
-}
-
-
-/*****************************************************************************/
-
-
-bool
-DateTime::operator != ( const DateTime & d ) const
-{
-	return !( *this == d );
-}
-
-
-/*****************************************************************************/
-
-
-bool
-DateTime::operator < ( const DateTime & d ) const
-{
-	if ( m_year < d.getYear() )
-		return true;
-
-	else if ( m_year == d.getYear() )
-	{
-		if ( m_month < d.getMonth() )
-			return true;
-
-		else if ( m_month == d.getMonth() )
-		{
-			if ( m_day < d.getDay() )
-				return true;
-
-			else if ( m_day == d.getDay() )
-			{
-				if ( m_hours < d.getHours() )
-					return true;
-
-				else if ( m_hours == d.getHours() )
-				{
-					if ( m_minutes < d.getMinutes() )
-						return true;
-
-					else if ( m_minutes == d.getMinutes() )
-						return m_seconds < d.getSeconds();
-				}
-			}
-		}
-	}
-
-	return false;
-}
-
-
-/*****************************************************************************/
-
-
-bool
-DateTime::operator > ( const DateTime & d ) const
-{
-	return d < *this;
-}
-
-
-/*****************************************************************************/
-
-
-bool
-DateTime::operator <= ( const DateTime & d ) const
-{
-	return ( *this < d ) || ( *this == d );
-}
-
-
-/*****************************************************************************/
-
-
-bool
-DateTime::operator >= ( const DateTime & d ) const
-{
-	return ( d < *this ) || ( *this == d );
-}
-
-
-/*****************************************************************************/
-
-
-std::ostream & operator << ( std::ostream & o, const DateTime & d )
-{
-	o << d.getYear() << '/' << d.getMonth() << '/' << d.getDay();
-	o << '-';
-	o << d.getHours() << ':' << d.getMinutes() << ':' << d.getSeconds();
-
-	return o;
-}
-
-
-/*****************************************************************************/
-
-
-std::istream & operator >> ( std::istream & i, DateTime & d )
-{
-	char buf[ 100 ];
-	i >> buf;
-
-	d = DateTime( buf );
-	return i;
-}
-
-
-/*****************************************************************************/
-

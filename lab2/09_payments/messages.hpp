@@ -11,9 +11,8 @@ namespace Messages
 	const char * const InvalidPaymentTime = "Payment's time is not earlier than current time";
 	const char * const InvalidPaymentSum = "Invalid payment sum";
 	const char * const EmptyPaymentPurpose = "Payment purpose cannot be empty";
-	const char * const EmptyPaymentNumber = "Payment number cannot be empty";
-	const char * const EmptyOrganizationName = "Payment purpose cannot be empty";
-	const char * const EmptyRegistrationNumber = "Payment purpose cannot be empty";
+	const char * const EmptyPaymentId = "Payment identifier cannot be empty";
+	const char * const EmptyOrganizationName = "Organization name cannot be empty";
 	const char * const DuplicatePayment = "Payment has already been added";
 	const char * const DuplicateOrganization = "Organization has already been added";
 	const char * const DuplicateRegistrationNumber = "Registration number has already been added";
