@@ -8,16 +8,17 @@
 namespace Messages
 {
 	const char * const IncorrectHistoryPeriodIndex = "Index of history periods is incorrect";
-	const char * const HistoryPeriodIsNegative = "Year range of history period is negative";
-	const char * const LeaderNameIsEmpty = "Leader name is empty";
-	const char * const LeaderPositionIsEmpty = "Leader position is empty";
-	const char * const LeaderUncorrectLivingYears = "Leader death date is greater than his birth date";
+	const char * const PeriodRangeInvalid = "Starting year in the period is bigger than finishing year";
+	const char * const PeriodOverlap = "Specified history period overlaps with already existing period";
+	const char * const LeaderNameEmpty = "Leader name is empty";
+	const char * const LeaderPositionEmpty = "Leader position is empty";
+	const char * const LeaderBadLivingYears = "Leader death date is greater than his birth date";
 	const char * const LeaderAlreadyExists = "Leader already exists";
 	const char * const CountryAlreadyExists = "Country already exists";
 	const char * const LeaderDoesNotExist = "Leader with such name doesn't exist";
 	const char * const CountryDoesNotExist = "Country with such name doesn't exist";
-	const char * const CountryNameIsEmpty = "Country name is empty";
-	const char * const CountryPopulationIsNonPositive = "Country population is non-positive";
+	const char * const CountryNameEmpty = "Country name is empty";
+	const char * const NonPositivePopulation = "Country population is non-positive";
 }
 
 /*****************************************************************************/

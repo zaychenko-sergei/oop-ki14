@@ -35,8 +35,8 @@ public:
 	void addLeader (
 			std::string const & _fullName
 		,	std::string const & _position
-		,	int _birthDate
-		,	int _deathDate
+		,	int _birthYear
+		,	int _deathYear
 	);
 
 	void addCountry ( std::string const & _name );
@@ -53,16 +53,15 @@ public:
 
 	std::string const & getLeaderPosition ( std::string const & _name ) const;
 
-	int getLeaderBirthDate ( std::string const & _name ) const;
+	int getLeaderBirthYear ( std::string const & _name ) const;
 
-	int getLeaderDeathDate ( std::string const & _name ) const;
+	int getLeaderDeathYear ( std::string const & _name ) const;
 
 /*-----------------------------------------------------------------*/
 
-	int getHistoryPeriodPopulation (
+	int getCountryPopulation (
 			std::string const & _country
-		,	std::string const & _leader
-		,	int _beginDate
+		,	int _interestedYear
 	) const;
 
 	int getHistoryPeriodsCount ( std::string const & _country ) const;
@@ -73,7 +72,7 @@ public:
 
 	std::pair< std::string, std::string > getCaseWithBiggestPopulationPercentageGrowth () const;
 
-	std::string getCountryWithMostFrequentLeaderChangesDuringLastYears ( int _range ) const;
+	std::string getCountryWithMostFrequentLeaderChanges ( int _beginYear, int _endYear ) const;
 
 	std::vector< std::string > getCurrentLeadersNotCalled ( std::string const & _position ) const;
 

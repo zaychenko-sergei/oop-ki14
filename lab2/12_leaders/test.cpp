@@ -26,9 +26,9 @@ void createCommonConfiguration ( Controller & c )
 	c.addLeader( "Philip V", "King", 1291, 1322 );
 	c.addLeader( "Charles IV", "King", 1294, 1328 );
 
-	c.addHistoryPeriod( "France", 1285, 1314, "Philip IV", 3000000 );
-	c.addHistoryPeriod( "France", 1314, 1316, "Louis X", 3100000 );
-	c.addHistoryPeriod( "France", 1316, 1322, "Philip V", 3200000 );
+	c.addHistoryPeriod( "France", 1285, 1313, "Philip IV", 3000000 );
+	c.addHistoryPeriod( "France", 1314, 1315, "Louis X", 3100000 );
+	c.addHistoryPeriod( "France", 1316, 1321, "Philip V", 3200000 );
 	c.addHistoryPeriod( "France", 1322, 1328, "Charles IV", 3300000 );
 
 	c.addCountry( "England" );
@@ -37,8 +37,8 @@ void createCommonConfiguration ( Controller & c )
 	c.addLeader( "Edward II", "King", 1284, 1327 );
 	c.addLeader( "Edward III", "King", 1312, 1377 );
 
-	c.addHistoryPeriod( "England", 1272, 1307, "Edward I", 2400000 );
-	c.addHistoryPeriod( "England", 1307, 1327, "Edward II", 2450000 );
+	c.addHistoryPeriod( "England", 1272, 1306, "Edward I", 2400000 );
+	c.addHistoryPeriod( "England", 1307, 1326, "Edward II", 2450000 );
 	c.addHistoryPeriod( "England", 1327, 1377, "Edward III", 3000000 );
 
 	c.addCountry( "Germany" );
@@ -46,7 +46,7 @@ void createCommonConfiguration ( Controller & c )
 	c.addLeader( "Gerhard Schroder", "Chancellor", 1944, alive );
 	c.addLeader( "Angela Merkel", "Chancellor", 1954, alive );
 
-	c.addHistoryPeriod( "Germany", 1998, 2005, "Gerhard Schroder", 50000000 );
+	c.addHistoryPeriod( "Germany", 1998, 2004, "Gerhard Schroder", 50000000 );
 	c.addHistoryPeriod( "Germany", 2005, 2015, "Angela Merkel", 52000000 );
 
 	c.addLeader( "Idi Amin", "President", 1928, 2003 );
@@ -63,8 +63,8 @@ DECLARE_OOP_TEST ( test_create_leader_properties )
 	c.addLeader( "Angela Merkel", "Chancellor", 1954, alive );
 
 	assert( c.getLeaderPosition( "Angela Merkel" ) == "Chancellor" );
-	assert( c.getLeaderBirthDate( "Angela Merkel" )  == 1954 );
-	assert( c.getLeaderDeathDate( "Angela Merkel" )  == alive );
+	assert( c.getLeaderBirthYear( "Angela Merkel" )  == 1954 );
+	assert( c.getLeaderDeathYear( "Angela Merkel" )  == alive );
 }
 
 
@@ -77,7 +77,7 @@ DECLARE_OOP_TEST ( test_create_leader_with_empty_full_name )
 
 	ASSERT_THROWS(
 			c.addLeader( "", "Chancellor", 1954, alive )
-		,	Messages::LeaderNameIsEmpty
+		,	Messages::LeaderNameEmpty
 	);
 }
 
@@ -91,7 +91,7 @@ DECLARE_OOP_TEST ( test_create_leader_with_empty_position )
 
 	ASSERT_THROWS(
 			c.addLeader( "Angela Merkel", "", 1954, alive )
-		,	Messages::LeaderPositionIsEmpty
+		,	Messages::LeaderPositionEmpty
 	);
 }
 
@@ -105,7 +105,7 @@ DECLARE_OOP_TEST ( test_create_leader_with_negative_living_period )
 
 	ASSERT_THROWS(
 			c.addLeader( "Angela Merkel", "Chancellor", alive, 1954 )
-		,	Messages::LeaderUncorrectLivingYears
+		,	Messages::LeaderBadLivingYears
 	);
 }
 
@@ -120,8 +120,8 @@ DECLARE_OOP_TEST ( test_create_leader_on_bc_ad_edge )
 	c.addLeader( "Augustus", "Emperor", -63, 14 );
 
 	assert( c.getLeaderPosition( "Augustus" ) == "Emperor" );
-	assert( c.getLeaderBirthDate( "Augustus" )  == -63 );
-	assert( c.getLeaderDeathDate( "Augustus" )  == 14 );
+	assert( c.getLeaderBirthYear( "Augustus" )  == -63 );
+	assert( c.getLeaderDeathYear( "Augustus" )  == 14 );
 }
 
 
@@ -161,7 +161,7 @@ DECLARE_OOP_TEST ( test_create_country_with_empty_name )
 
 	ASSERT_THROWS(
 			c.addCountry( "" )
-		,	Messages::CountryNameIsEmpty
+		,	Messages::CountryNameEmpty
 	);
 }
 
@@ -196,7 +196,7 @@ DECLARE_OOP_TEST ( test_create_country_with_period )
 	c.addHistoryPeriod( "France", 1285, 1314, "Philip IV", 3000000 );
 
 	assert( c.getHistoryPeriodsCount( "France" ) == 1 );
-	assert( c.getHistoryPeriodPopulation( "France", "Philip IV", 1285 ) == 3000000 );
+	assert( c.getCountryPopulation( "France", 1285 ) == 3000000 );
 }
 
 
@@ -213,7 +213,7 @@ DECLARE_OOP_TEST ( test_create_country_with_negative_period )
 
 	ASSERT_THROWS(
 			c.addHistoryPeriod( "France", 1314, 1285, "Philip IV", 3000000 )
-		,	Messages::HistoryPeriodIsNegative
+		,	Messages::PeriodRangeInvalid
 	);
 }
 
@@ -231,7 +231,7 @@ DECLARE_OOP_TEST ( test_create_country_with_empty_country_name )
 
 	ASSERT_THROWS(
 			c.addHistoryPeriod( "", 1285, 1314, "Philip IV", 3000000 )
-		,	Messages::CountryNameIsEmpty
+		,	Messages::CountryDoesNotExist
 	);
 }
 
@@ -249,7 +249,7 @@ DECLARE_OOP_TEST ( test_create_country_with_empty_leader_name )
 
 	ASSERT_THROWS(
 			c.addHistoryPeriod( "France", 1285, 1314, "", 3000000 )
-		,	Messages::LeaderNameIsEmpty
+		,	Messages::LeaderDoesNotExist
 	);
 }
 
@@ -304,7 +304,7 @@ DECLARE_OOP_TEST ( test_create_same_year_history_period )
 	c.addHistoryPeriod( "Neverland", 2, 2, "Recruit", 5 );
 
 	assert( c.getHistoryPeriodsCount( "Neverland" ) == 1 );
-	assert( c.getHistoryPeriodPopulation( "Neverland", "Recruit", 2 ) == 5 );
+	assert( c.getCountryPopulation( "Neverland", 2 ) == 5 );
 }
 
 
@@ -319,12 +319,12 @@ DECLARE_OOP_TEST ( test_create_multiple_country_periods_with_same_leader )
 
 	c.addLeader( "Philip IV", "King", 1268, 1314 );
 
-	c.addHistoryPeriod( "France", 1284, 1285, "Philip IV", 2900000 );
+	c.addHistoryPeriod( "France", 1284, 1284, "Philip IV", 2900000 );
 	c.addHistoryPeriod( "France", 1285, 1314, "Philip IV", 3000000 );
 
 	assert( c.getHistoryPeriodsCount( "France" ) == 2 );
-	assert( c.getHistoryPeriodPopulation( "France", "Philip IV", 1284 ) == 2900000 );
-	assert( c.getHistoryPeriodPopulation( "France", "Philip IV", 1285 ) == 3000000 );
+	assert( c.getCountryPopulation( "France", 1284 ) == 2900000 );
+	assert( c.getCountryPopulation( "France", 1285 ) == 3000000 );
 }
 
 
@@ -342,8 +342,8 @@ DECLARE_OOP_TEST ( test_population_query_with_empty_country_name )
 	c.addHistoryPeriod( "France", 1285, 1314, "Philip IV", 3000000 );
 
 	ASSERT_THROWS(
-			c.getHistoryPeriodPopulation( "", "Philip IV", 1285 )
-		,	Messages::CountryNameIsEmpty
+			c.getCountryPopulation( "", 1285 )
+		,	Messages::CountryDoesNotExist
 	);
 }
 
@@ -362,48 +362,8 @@ DECLARE_OOP_TEST ( test_population_query_with_unexisting_country_name )
 	c.addHistoryPeriod( "France", 1285, 1314, "Philip IV", 3000000 );
 
 	ASSERT_THROWS(
-			c.getHistoryPeriodPopulation( "England", "Philip IV", 1285 )
+			c.getCountryPopulation( "England", 1285 )
 		,	Messages::CountryDoesNotExist
-	);
-}
-
-
-/*****************************************************************************/
-
-
-DECLARE_OOP_TEST ( test_population_query_with_empty_leader_name )
-{
-	Controller c;
-
-	c.addCountry( "France" );
-
-	c.addLeader( "Philip IV", "King", 1268, 1314 );
-
-	c.addHistoryPeriod( "France", 1285, 1314, "Philip IV", 3000000 );
-
-	ASSERT_THROWS(
-			c.getHistoryPeriodPopulation( "France", "", 1285 )
-		,	Messages::LeaderNameIsEmpty
-	);
-}
-
-
-/*****************************************************************************/
-
-
-DECLARE_OOP_TEST ( test_population_query_with_enexisting_leader_name )
-{
-	Controller c;
-
-	c.addCountry( "France" );
-
-	c.addLeader( "Philip IV", "King", 1268, 1314 );
-
-	c.addHistoryPeriod( "France", 1285, 1314, "Philip IV", 3000000 );
-
-	ASSERT_THROWS(
-			c.getHistoryPeriodPopulation( "France", "Karl I", 1285 )
-		,	Messages::LeaderDoesNotExist
 	);
 }
 
@@ -449,7 +409,7 @@ DECLARE_OOP_TEST ( test_country_with_most_leader_changes_during_last_50_years )
 
 	createCommonConfiguration( c );
 
-	assert( c.getCountryWithMostFrequentLeaderChangesDuringLastYears( 50 ) == "Germany" );
+	assert( c.getCountryWithMostFrequentLeaderChanges( 1965, 2015 ) == "Germany" );
 }
 
 
@@ -462,7 +422,7 @@ DECLARE_OOP_TEST ( test_country_with_most_leader_changes_during_last_1000_years 
 
 	createCommonConfiguration( c );
 
-	assert( c.getCountryWithMostFrequentLeaderChangesDuringLastYears( 1000 ) == "France" );
+	assert( c.getCountryWithMostFrequentLeaderChanges( 1015, 2015 ) == "France" );
 }
 
 
