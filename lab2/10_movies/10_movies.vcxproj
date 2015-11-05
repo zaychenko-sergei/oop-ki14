@@ -84,7 +84,6 @@
     <ClCompile Include="movie.cpp" />
     <ClCompile Include="movieactor.cpp" />
     <ClCompile Include="test.cpp" />
-    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="controller.hpp" />
@@ -92,7 +91,6 @@
     <ClInclude Include="movie.hpp" />
     <ClInclude Include="movieactor.hpp" />
     <ClInclude Include="testslib.hpp" />
-    <ClInclude Include="utils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

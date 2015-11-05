@@ -36,7 +36,7 @@ public:
 			std::string const & _name
 		,	std::string const & _manufacturer
 		,	std::string const & _version
-		,	unsigned int _releaseYear
+		,	int _releaseYear
 		,	ProgramCategory _category
 	);
 

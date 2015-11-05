@@ -7,9 +7,6 @@
     <ClCompile Include="movieactor.cpp">
       <Filter>Model</Filter>
     </ClCompile>
-    <ClCompile Include="utils.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
     <ClCompile Include="controller.cpp">
       <Filter>Application</Filter>
     </ClCompile>
@@ -37,9 +34,6 @@
     </ClInclude>
     <ClInclude Include="messages.hpp">
       <Filter>Application</Filter>
-    </ClInclude>
-    <ClInclude Include="utils.hpp">
-      <Filter>Model</Filter>
     </ClInclude>
     <ClInclude Include="controller.hpp">
       <Filter>Application</Filter>

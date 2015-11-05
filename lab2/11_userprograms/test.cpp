@@ -97,7 +97,7 @@ DECLARE_OOP_TEST ( test_create_account_with_empty_full_name )
 
 	ASSERT_THROWS(
 			c.createAccount( "ivani", "" )
-		,	Messages::AbsentFullName
+		,	Messages::EmptyFullName
 	);
 }
 
@@ -111,7 +111,7 @@ DECLARE_OOP_TEST ( test_create_account_with_empty_login )
 
 	ASSERT_THROWS(
 			c.createAccount( "", "Ivan Ivanov" )
-		,	Messages::AbsentLogin
+		,	Messages::EmptyLogin
 	);
 }
 
@@ -125,7 +125,7 @@ DECLARE_OOP_TEST ( test_create_program_with_empty_name )
 
 	ASSERT_THROWS(
 			c.createProgram( "", "Google", "40.0.1.15648321", 2015, ProgramCategory::Browser )
-		,	Messages::AbsentProgramName
+		,	Messages::EmptyProgramName
 	);
 }
 
@@ -139,7 +139,7 @@ DECLARE_OOP_TEST ( test_create_program_with_empty_manufacturer )
 
 	ASSERT_THROWS(
 			c.createProgram( "Chrome", "", "40.0.1.15648321", 2015, ProgramCategory::Browser )
-		,	Messages::AbsentManufacturer
+		,	Messages::EmptyManufacturer
 	);
 }
 
@@ -153,7 +153,7 @@ DECLARE_OOP_TEST ( test_create_program_with_empty_version )
 
 	ASSERT_THROWS(
 			c.createProgram( "Chrome", "Google", "", 2015, ProgramCategory::Browser )
-		,	Messages::AbsentVersion
+		,	Messages::EmptyVersion
 	);
 }
 
@@ -340,7 +340,7 @@ DECLARE_OOP_TEST ( test_account_with_preferred_programs_version_mismatch )
 
 	ASSERT_THROWS(
 			c.setAccountPreferredOfficeTool( "darthv", "Destroyer Deck", "42" )
-		,	Messages::ProgramDoesNotFound
+		,	Messages::ProgramNotFound
 	);
 }
 
@@ -383,9 +383,6 @@ DECLARE_OOP_TEST ( test_accounts_preferring_browser_query )
 
 	auto expectedLogins = std::vector< std::string >{ "first", "third" };
 	auto recievedLogins = c.getUsersPreferringBrowser( "Netscape" );
-	std::sort( recievedLogins.begin(), recievedLogins.end() );
-	std::sort( expectedLogins.begin(), expectedLogins.end() );
-
 	assert( expectedLogins == recievedLogins );
 	assert( c.getUsersPreferringBrowser( "Internet Explorer" ) == std::vector< std::string >{ "second" } );
 }
@@ -417,10 +414,7 @@ DECLARE_OOP_TEST ( test_accounts_with_older_office_version )
 	createCommonConfiguration( c );
 
 	auto recievedLogins = c.getUsersPreferringOlderOfficeVersion();
-	auto expectedLogins = std::vector< std::string >{ "second", "third", "fifth" };
-
-	std::sort( recievedLogins.begin(), recievedLogins.end() );
-	std::sort( expectedLogins.begin(), expectedLogins.end() );
+	auto expectedLogins = std::vector< std::string >{ "fifth", "second", "third",  };
 
 	assert( expectedLogins == recievedLogins );
 }
@@ -439,13 +433,10 @@ DECLARE_OOP_TEST ( test_print_programs_without_preferences )
 	auto expectedLogins = std::vector< std::pair< std::string, std::string > > {
 			std::make_pair( "Firefox", "1.0" )
 		,	std::make_pair( "Firefox", "1.5" )
-		,	std::make_pair( "Pidguin", "5.0" )
 		,	std::make_pair( "LibreOffice", "1.2" )
 		,	std::make_pair( "LibreOffice", "1.4" )
+		,	std::make_pair( "Pidguin", "5.0" )
 	};
-
-	std::sort( recievedLogins.begin(), recievedLogins.end() );
-	std::sort( expectedLogins.begin(), expectedLogins.end() );
 
 	assert( expectedLogins == recievedLogins );
 }
