@@ -30,24 +30,11 @@ public:
 
 /*-----------------------------------------------------------------*/
 
-	void addProject ( std::string const & _name );
-
-	void addDocumentForProject (
-			std::string const & _projectName
-		,	std::string const & _documentName
-		,	std::string const & _standard
-	);
-
-	void addStandardForProject (
-		std::string const & _projectName
-		,	std::string const & _standard
-	);
-
-/*-----------------------------------------------------------------*/
+	void addProject ( std::string const & _projectName );
 
 	int getProjectsCount () const;
 
-	bool hasProject ( std::string const & _project ) const;
+	bool hasProject ( std::string const & _projectName ) const;
 
 /*-----------------------------------------------------------------*/
 
@@ -65,7 +52,18 @@ public:
 		,	std::string const & _documentName
 	) const;
 
+	void addDocumentForProject (
+			std::string const & _projectName
+		,	std::string const & _documentName
+		,	std::string const & _standardName
+	);
+
 /*-----------------------------------------------------------------*/
+
+	void addStandardForProject (
+			std::string const & _projectName
+		,	std::string const & _standardName
+	);
 
 	int getProjectStandardsCount ( std::string const & _projectName ) const;
 

@@ -163,7 +163,7 @@ DECLARE_OOP_TEST ( test_create_document_with_empty_project )
 
 	ASSERT_THROWS(
 			c.addDocumentForProject( "", "shadows.cc", "CPP11" )
-		,	Messages::ProjectNameIsEmpty
+		,	Messages::ProjectDoesNotExist
 	);
 }
 
@@ -228,7 +228,7 @@ DECLARE_OOP_TEST ( test_create_standard_for_empty_project_name )
 
 	ASSERT_THROWS(
 			c.addStandardForProject( "", "CPP11" )
-		,	Messages::ProjectNameIsEmpty
+		,	Messages::ProjectDoesNotExist
 	);
 }
 
@@ -330,7 +330,7 @@ DECLARE_OOP_TEST ( test_create_documents_count_with_empty_project_name )
 
 	ASSERT_THROWS(
 			c.getProjectDocumentsCount( "" )
-		,	Messages::ProjectNameIsEmpty
+		,	Messages::ProjectDoesNotExist
 	);
 }
 
@@ -364,7 +364,7 @@ DECLARE_OOP_TEST ( test_has_project_document_with_empty_project_name )
 
 	ASSERT_THROWS(
 			assert( c.hasProjectDocument( "", "shadows.cc" ) )
-		,	Messages::ProjectNameIsEmpty
+		,	Messages::ProjectDoesNotExist
 	);
 }
 
@@ -400,7 +400,7 @@ DECLARE_OOP_TEST ( test_get_project_document_standard_with_empty_project_name )
 
 	ASSERT_THROWS(
 			c.getProjectDocumentStandard( "", "shadows.cc" )
-		,	Messages::ProjectNameIsEmpty
+		,	Messages::ProjectDoesNotExist
 	);
 }
 
@@ -436,7 +436,7 @@ DECLARE_OOP_TEST ( test_has_project_standard_with_empty_project_name )
 
 	ASSERT_THROWS(
 			assert( c.hasProjectStandard( "", "ISO/IEC 27001:2005" ) )
-		,	Messages::ProjectNameIsEmpty
+		,	Messages::ProjectDoesNotExist
 	);
 }
 
@@ -470,10 +470,7 @@ DECLARE_OOP_TEST ( test_has_project_standard_with_empty_standard_name )
 
 	c.addStandardForProject( "Docs", "ISO/IEC 27001:2005" );
 
-	ASSERT_THROWS(
-			c.hasProjectStandard( "Docs", "" )
-		,	Messages::StandardNameIsEmpty
-	);
+	assert( c.hasProjectStandard( "Docs", "" ) == false );
 }
 
 

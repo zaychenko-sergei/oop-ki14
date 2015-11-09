@@ -12,7 +12,7 @@ namespace Messages
 	const char * const DocumentNameIsEmpty = "Document name is empty";
 	const char * const DocumentAlreadyExistsInProject = "Document already exists in project";
 	const char * const DocumentDoesNotExistInProject = "Requested document does not exist in project";
-	const char * const ProjectDoesNotExist = "Requested project doesn't exist";
+	const char * const ProjectDoesNotExist = "Requested project does not exist";
 	const char * const ProjectNameIsEmpty = "Project name is empty";
 	const char * const ProjectAlreadyExists = "Project already exists";
 }
