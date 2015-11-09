@@ -30,17 +30,17 @@ public:
 
 /*-----------------------------------------------------------------*/
 
-	std::string const & getEmployeePosition ( std::string const & _name ) const;
-
-	int getEmployeeBirthYear ( std::string const & _name ) const;
-
-/*-----------------------------------------------------------------*/
-
 	void addEmployee (
-			std::string const & _fullName
+			std::string const & _employeeName
 		,	std::string const & _position
 		,	int _birthYear
 	);
+
+	std::string const & getEmployeePosition ( std::string const & _employeeName ) const;
+
+	int getEmployeeBirthYear ( std::string const & _employeeName ) const;
+
+/*-----------------------------------------------------------------*/
 
 	void addSkillForEmployee (
 			std::string const & _employeeName
@@ -48,7 +48,7 @@ public:
 		,	int _level
 	);
 
-	int getEmployeeSkillsCount ( std::string const & _name ) const;
+	int getEmployeeSkillsCount ( std::string const & _employeeName ) const;
 
 	int
 	getEmployeeSkillLevel (
@@ -57,7 +57,7 @@ public:
 	) const;
 
 	std::unordered_set< std::string >
-	getEmployeeSkillNames ( std::string const & _name ) const;
+	getEmployeeSkillNames ( std::string const & _employeeName ) const;
 
 /*-----------------------------------------------------------------*/
 
@@ -65,7 +65,7 @@ public:
 		std::pair< std::string /*skill name*/, int /*level*/ >
 		BestSkill;
 
-	BestSkill getEmployeeBestSkill ( std::string const & _employee ) const;
+	BestSkill getEmployeeBestSkill ( std::string const & _employeeName ) const;
 
 	typedef
 		std::unordered_set< std::string >

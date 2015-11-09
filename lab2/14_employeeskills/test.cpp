@@ -95,7 +95,7 @@ DECLARE_OOP_TEST ( test_create_employee_year_more_than_current )
 
 	ASSERT_THROWS(
 			c.addEmployee( "John Tedlow", "Recruiter", 2099 )
-		,	Messages::EmployeeBirthYearMoreThanCurrent
+		,	Messages::EmployeeBornInFuture
 	);
 }
 
@@ -155,7 +155,7 @@ DECLARE_OOP_TEST ( test_create_skill_with_empty_employee_name )
 
 	ASSERT_THROWS(
 			c.addSkillForEmployee( "", "Test Driven Development", 7 )
-		,	Messages::EmployeeNameIsEmpty
+		,	Messages::EmployeeDoesNotExist
 	);
 }
 
@@ -239,7 +239,7 @@ DECLARE_OOP_TEST ( test_create_duplicating_skill )
 
 	ASSERT_THROWS(
 			c.addSkillForEmployee( "John Tedlow", "TDD", 9 )
-		,	Messages::SkillAlreadyExistsForEmployee
+		,	Messages::SkillAlreadyDefinedForEmployee
 	);
 }
 
@@ -257,7 +257,7 @@ DECLARE_OOP_TEST ( test_get_skill_with_empty_employee_name )
 
 	ASSERT_THROWS(
 			c.getEmployeeSkillLevel( "", "TDD" )
-		,	Messages::EmployeeNameIsEmpty
+		,	Messages::EmployeeDoesNotExist
 	);
 }
 
@@ -293,7 +293,7 @@ DECLARE_OOP_TEST ( test_get_skill_with_empty_skill_name )
 
 	ASSERT_THROWS(
 			c.getEmployeeSkillLevel( "John Tedlow", "" )
-		,	Messages::SkillNameIsEmpty
+		,	Messages::SkillUndefinedForEmployee
 	);
 }
 
@@ -311,7 +311,7 @@ DECLARE_OOP_TEST ( test_get_skill_with_unexisting_skill_name )
 
 	ASSERT_THROWS(
 			c.getEmployeeSkillLevel( "John Tedlow", "C++" )
-		,	Messages::SkillDoesNotExistForEmployee
+		,	Messages::SkillUndefinedForEmployee
 	);
 }
 
@@ -350,7 +350,7 @@ DECLARE_OOP_TEST ( test_get_employee_skill_names_empty_employee_name )
 
 	ASSERT_THROWS(
 			c.getEmployeeSkillNames( "" )
-		,	Messages::EmployeeNameIsEmpty
+		,	Messages::EmployeeDoesNotExist
 	);
 }
 
@@ -390,7 +390,7 @@ DECLARE_OOP_TEST ( test_get_employee_skills_count_empty_employee_name )
 
 	ASSERT_THROWS(
 			c.getEmployeeSkillsCount( "" )
-		,	Messages::EmployeeNameIsEmpty
+		,	Messages::EmployeeDoesNotExist
 	);
 }
 
