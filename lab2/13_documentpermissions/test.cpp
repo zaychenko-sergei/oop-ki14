@@ -16,7 +16,7 @@ void createCommonConfiguration ( Controller & c )
 	c.addUser( "julia", "Julia" );
 	c.addUser( "emmanuelg", "Emmanuel Goldstein" );
 
-	unsigned const int DOC_ID1 = 1, DOC_ID2 = 2, DOC_ID3 = 3, DOC_ID4 = 4;
+	const int DOC_ID1 = 1, DOC_ID2 = 2, DOC_ID3 = 3, DOC_ID4 = 4;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 	c.addDocument( DOC_ID2, "Guardian #22.txt", "/party/minitruth/magazine/guardian/1984", OwnershipRights::NoAccess );
@@ -38,7 +38,7 @@ void createCommonConfiguration ( Controller & c )
 
 DECLARE_OOP_TEST ( test_create_document_trace_properties )
 {
-	unsigned const int DOC_UID = 12345;
+	const int DOC_UID = 12345;
 
 	Controller c;
 	c.addDocument( DOC_UID, "passwords.txt", "D:\\Work\\Important stuff", OwnershipRights::ReadAndWrite );
@@ -54,7 +54,7 @@ DECLARE_OOP_TEST ( test_create_document_trace_properties )
 
 DECLARE_OOP_TEST ( test_create_document_empty_name )
 {
-	unsigned const int DOC_UID = 12345;
+	const int DOC_UID = 12345;
 
 	Controller c;
 	ASSERT_THROWS(
@@ -69,7 +69,7 @@ DECLARE_OOP_TEST ( test_create_document_empty_name )
 
 DECLARE_OOP_TEST ( test_create_document_empty_path )
 {
-	unsigned const int DOC_UID = 12345;
+	const int DOC_UID = 12345;
 
 	Controller c;
 	ASSERT_THROWS(
@@ -84,7 +84,7 @@ DECLARE_OOP_TEST ( test_create_document_empty_path )
 
 DECLARE_OOP_TEST ( test_create_document_duplicating_id )
 {
-	unsigned const int DOC_UID = 12345;
+	const int DOC_UID = 12345;
 	Controller c;
 
 	c.addDocument( DOC_UID, "passwords.txt", "C:\\Work\\Important stuff", OwnershipRights::NoAccess );
@@ -101,7 +101,7 @@ DECLARE_OOP_TEST ( test_create_document_duplicating_id )
 
 DECLARE_OOP_TEST ( test_create_document_duplicating_file_name_and_path_name )
 {
-	unsigned const int DOC_UID1 = 1, DOC_UID2 = 2, DOC_UID3 = 3;
+	const int DOC_UID1 = 1, DOC_UID2 = 2, DOC_UID3 = 3;
 	Controller c;
 
 	c.addDocument( DOC_UID1, "passwords.txt", "C:\\Work\\Important stuff", OwnershipRights::NoAccess );
@@ -189,7 +189,7 @@ DECLARE_OOP_TEST ( test_adding_document_rights )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1, DOC_ID2 = 2, DOC_ID3 = 3;
+	const int DOC_ID1 = 1, DOC_ID2 = 2, DOC_ID3 = 3;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 	c.addDocument( DOC_ID2, "Guardian #22.txt", "/party/minitruth/magazine/guardian/1984", OwnershipRights::NoAccess );
@@ -214,7 +214,7 @@ DECLARE_OOP_TEST ( test_adding_document_for_unexisting_user )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1;
+	const int DOC_ID1 = 1;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 
@@ -234,13 +234,13 @@ DECLARE_OOP_TEST ( test_adding_document_for_empty_name_user )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1;
+	const int DOC_ID1 = 1;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 
 	ASSERT_THROWS(
 			c.addDocumentRightsForUser( "", DOC_ID1, OwnershipRights::ReadAndWrite )
-		,	Messages::UserLoginIsEmpty
+		,	Messages::UserLoginDoesNotExist
 	);
 }
 
@@ -254,7 +254,7 @@ DECLARE_OOP_TEST ( test_adding_unexisting_document_rights )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1, DOC_ID2 = 2;
+	const int DOC_ID1 = 1, DOC_ID2 = 2;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 
@@ -274,7 +274,7 @@ DECLARE_OOP_TEST ( test_adding_already_existing_document_rights )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1, DOC_ID2 = 2;
+	const int DOC_ID1 = 1, DOC_ID2 = 2;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 
@@ -282,7 +282,7 @@ DECLARE_OOP_TEST ( test_adding_already_existing_document_rights )
 
 	ASSERT_THROWS(
 			c.addDocumentRightsForUser( "winstons", DOC_ID1, OwnershipRights::NoAccess )
-		,	Messages::DocumentRightsAlreadyExists
+		,	Messages::DocumentRightsAlreadyDefined
 	);
 }
 
@@ -296,7 +296,7 @@ DECLARE_OOP_TEST ( test_set_document_rights )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1;
+	const int DOC_ID1 = 1;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 
@@ -314,7 +314,7 @@ DECLARE_OOP_TEST ( test_set_document_rights_for_unexisting_document )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1, DOC_ID2 = 2;
+	const int DOC_ID1 = 1, DOC_ID2 = 2;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 
@@ -336,7 +336,7 @@ DECLARE_OOP_TEST ( test_set_document_rights_for_unexisting_user )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1;
+	const int DOC_ID1 = 1;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 
@@ -358,7 +358,7 @@ DECLARE_OOP_TEST ( test_set_document_rights_for_empty_user_name )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1;
+	const int DOC_ID1 = 1;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 
@@ -366,7 +366,7 @@ DECLARE_OOP_TEST ( test_set_document_rights_for_empty_user_name )
 
 	ASSERT_THROWS(
 			c.changeDocumentRightsForUser( "", DOC_ID1, OwnershipRights::NoAccess )
-		,	Messages::UserLoginIsEmpty
+		,	Messages::UserLoginDoesNotExist
 	);
 }
 
@@ -380,7 +380,7 @@ DECLARE_OOP_TEST ( test_erase_document_rights )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1, DOC_ID2 = 2, DOC_ID3 = 3;
+	const int DOC_ID1 = 1, DOC_ID2 = 2, DOC_ID3 = 3;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadAndWrite );
 	c.addDocument( DOC_ID2, "Guardian #22.txt", "/party/minitruth/magazine/guardian/1984", OwnershipRights::ReadOnly );
@@ -393,7 +393,7 @@ DECLARE_OOP_TEST ( test_erase_document_rights )
 	c.eraseDocumentRightsForUser( "winstons", DOC_ID2 );
 
 	assert( c.getDocumentRightsForUser( "winstons", DOC_ID1 ) == OwnershipRights::ReadAndWrite );
-	assert( c.getDocumentRightsForUser( "winstons", DOC_ID2 ) == OwnershipRights::NoAccess );
+	assert( c.getDocumentRightsForUser( "winstons", DOC_ID2 ) == OwnershipRights::ReadOnly );
 	assert( c.getDocumentRightsForUser( "winstons", DOC_ID3 ) == OwnershipRights::ReadAndWrite );
 }
 
@@ -407,7 +407,7 @@ DECLARE_OOP_TEST ( test_erase_document_rights_with_empty_login )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1;
+	const int DOC_ID1 = 1;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadOnly );
 
@@ -415,7 +415,7 @@ DECLARE_OOP_TEST ( test_erase_document_rights_with_empty_login )
 
 	ASSERT_THROWS(
 			c.eraseDocumentRightsForUser( "", DOC_ID1 )
-		,	Messages::UserLoginIsEmpty
+		,	Messages::UserLoginDoesNotExist
 	);
 }
 
@@ -429,7 +429,7 @@ DECLARE_OOP_TEST ( test_erase_document_rights_with_unexisting_login )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1;
+	const int DOC_ID1 = 1;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadOnly );
 
@@ -451,7 +451,7 @@ DECLARE_OOP_TEST ( test_erase_document_rights_with_unexisting_document_id )
 
 	c.addUser( "winstons", "Winston Smith" );
 
-	unsigned const int DOC_ID1 = 1, DOC_ID2 = 2;
+	const int DOC_ID1 = 1, DOC_ID2 = 2;
 
 	c.addDocument( DOC_ID1, "Daily Telegraph #16.txt", "/party/minitruth/magazine/dt/1984", OwnershipRights::ReadOnly );
 
@@ -487,7 +487,7 @@ DECLARE_OOP_TEST ( test_user_permissions_report_query )
 			,	{
 						"julia"
 					,	{
-								{ 1, OwnershipRights::NoAccess }
+								{ 1, OwnershipRights::ReadAndWrite }
 							,	{ 2, OwnershipRights::ReadOnly }
 							,	{ 3, OwnershipRights::ReadAndWrite }
 							,	{ 4, OwnershipRights::NoAccess }
@@ -496,9 +496,9 @@ DECLARE_OOP_TEST ( test_user_permissions_report_query )
 			,	{
 						"emmanuelg"
 					,	{
-								{ 1, OwnershipRights::NoAccess }
+								{ 1, OwnershipRights::ReadAndWrite }
 							,	{ 2, OwnershipRights::NoAccess }
-							,	{ 3, OwnershipRights::NoAccess }
+							,	{ 3, OwnershipRights::ReadOnly }
 							,	{ 4, OwnershipRights::NoAccess }
 						}
 				}
@@ -534,6 +534,8 @@ DECLARE_OOP_TEST ( test_users_not_having_permitted_documents_query )
 	Controller c;
 
 	createCommonConfiguration( c );
+	c.addDocumentRightsForUser( "emmanuelg", 1, OwnershipRights::NoAccess );
+	c.addDocumentRightsForUser( "emmanuelg", 3, OwnershipRights::NoAccess );
 
 	std::unordered_set< std::string > expectedResult = { "emmanuelg" };
 
@@ -552,6 +554,7 @@ DECLARE_OOP_TEST ( test_documents_having_multiple_write_users_query )
 
 	Controller::DocumentsInfo expectedResult =
 		{
+			{ 1, "Daily Telegraph #16.txt" },
 			{ 3 , "The Sun #14.txt" }
 		};
 

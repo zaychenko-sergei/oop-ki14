@@ -40,40 +40,40 @@ public:
 /*-----------------------------------------------------------------*/
 
 	void addDocument ( 
-		unsigned int _uid, 
+		int _documentID, 
 		std::string const & _name, 
 		std::string const & _path, 
 		OwnershipRights _defaultRight
 	);
 
-	std::string const & getDocumentName ( unsigned int _uid ) const;
+	std::string const & getDocumentName ( int _documentID ) const;
 
-	std::string const & getDocumentPath ( unsigned int _uid ) const;
+	std::string const & getDocumentPath ( int _documentID ) const;
 
-	OwnershipRights getDocumentDefaultRights ( unsigned int _uid ) const;
+	OwnershipRights getDocumentDefaultRights ( int _documentID ) const;
 
 /*-----------------------------------------------------------------*/
 
 	void addDocumentRightsForUser ( 
 		std::string const & _userLogin,
-		int _documentUid,
+		int _documentID,
 		OwnershipRights _rights 
 	);
 
 	void changeDocumentRightsForUser (
 		std::string const & _userLogin,
-		unsigned int _documentUid,
+		int _documentID,
 		OwnershipRights _rights
 	);
 
 	void eraseDocumentRightsForUser ( 
 		std::string const & _userLogin, 
-		unsigned int _documentUid 
+		int _documentID
 	);
 
 	OwnershipRights getDocumentRightsForUser( 
 		std::string const & _userLogin, 
-		unsigned int _documentUid 
+		int _documentID
 	) const;
 
 /*-----------------------------------------------------------------*/
@@ -82,7 +82,7 @@ public:
 		std::unordered_map<
 				std::string /* login */
 			,	std::unordered_map<
-						unsigned int /* uid */
+						int /* _documentID */
 					,	OwnershipRights
 				>
 		>
@@ -91,7 +91,7 @@ public:
 	AllRights getUserPermissionsReport () const;
 
 	typedef
-		std::unordered_map< unsigned int /* uid */, std::string /*name*/ >
+		std::unordered_map< int /* _documentID */, std::string /*name*/ >
 		DocumentsInfo;
 
 	DocumentsInfo getDocumentsNotHavingPermittedUsers () const;
