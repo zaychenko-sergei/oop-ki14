@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{670cc7c1-9f6b-435f-a2d1-548e3b2fa1ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application">
+      <UniqueIdentifier>{f7605012-7e47-43db-aa6f-795e31fe3e71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{412b3b19-e6c2-48fb-986b-073d87be91c0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="skill.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="employee.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.hpp">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="skill.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="employee.hpp">
+      <Filter>Model</Filter>
+    </None>
+  </ItemGroup>
+</Project>
