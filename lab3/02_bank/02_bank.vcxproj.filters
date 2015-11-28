@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{fceddca4-7ff4-4691-ad62-e38ee4442e37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{d4e42fad-72f0-4d24-991e-4ca2c2f31cfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{c41d2bdf-3091-4ad2-b97d-4f5acf5d4082}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="bank.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="account.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="overdraftaccount.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bank.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="account.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="overdraftaccount.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
