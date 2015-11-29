@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{2462135d-f4b8-4637-b027-60378c02b078}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{11e5e73b-477a-4bfb-ab22-aa21031de275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{071a5051-e7fe-4a0c-9bdc-6c5000496f0d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="program.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="license.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="perpetuallicense.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="timebasedlicense.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="tokenbasedlicense.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="date.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="controller.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="program.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="license.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="perpetuallicense.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="timebasedlicense.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="tokenbasedlicense.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="date.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="license_type.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
