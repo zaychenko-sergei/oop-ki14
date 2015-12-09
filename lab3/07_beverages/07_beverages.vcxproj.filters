@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{1e225b47-1a3a-4011-a886-60fc0126ad71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{acf75b78-8ccb-4fa8-b4a4-16476891ed79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{38bb1a5d-8438-437d-be71-e8490468be11}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="customer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="beverage.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="juice.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="beer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="poison.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="customer.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="beverage.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="juice.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="beer.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="poison.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="controller.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
