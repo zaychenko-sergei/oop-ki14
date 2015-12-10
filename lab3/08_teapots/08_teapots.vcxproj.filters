@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{eb1b8c19-f172-44a6-b002-8ec0a68928d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{502672dd-9b60-45cb-90ae-8abd9bf5989c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{ef5b697a-56d7-4b1a-9148-d571286efe42}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="automaticteapot.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="manualteapot.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="teapot.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="controller.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="teapot.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="manualteapot.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="automaticteapot.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
