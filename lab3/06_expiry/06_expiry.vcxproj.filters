@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{ac346c85-3244-4f5a-ab01-e9e2c0628165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{fa5f3b98-d505-428a-b082-3c96836a7604}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{72fa1a8a-65bc-422e-94a3-2dbfb1ddb06f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="consignment.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="date.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="expirypolicy.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="nullexpirypolicy.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="quickexpirypolicy.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="slowexpirypolicy.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="daysexpirypolicy.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="controller.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="consignment.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="expirypolicy.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="nullexpirypolicy.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="quickexpirypolicy.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="slowexpirypolicy.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="date.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="daysexpirypolicy.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="expirypolicykind.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
