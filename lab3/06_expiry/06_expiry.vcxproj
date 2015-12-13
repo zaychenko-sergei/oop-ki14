@@ -84,7 +84,6 @@
     <ClCompile Include="controller.cpp" />
     <ClCompile Include="date.cpp" />
     <ClCompile Include="daysexpirypolicy.cpp" />
-    <ClCompile Include="expirypolicy.cpp" />
     <ClCompile Include="nullexpirypolicy.cpp" />
     <ClCompile Include="quickexpirypolicy.cpp" />
     <ClCompile Include="slowexpirypolicy.cpp" />
