@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{2fd15473-3aee-415d-b82f-517a12fd810b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{b82978c6-feb5-4c0f-af37-bceedd7cb390}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{267040a9-8022-48f2-a02e-e422eaeecede}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+    <ClCompile Include="personconsumer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="organizationconsumer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="systemconsumer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="energyconsumer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="controller.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+    <ClInclude Include="energyconsumer.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="personconsumer.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="organizationconsumer.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="systemconsumer.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="energyprice.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
