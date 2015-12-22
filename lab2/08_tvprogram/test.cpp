@@ -622,8 +622,10 @@ void generateModel( Controller & _c )
 		_c.addProgram( "IT", day, "Why we need QA?", Time( 15, 0, 0 ), Genre::Information, 5 );
 		_c.addProgram( "IT", day, "Agile", Time( 19, 0, 0 ), Genre::Information, 5 );
 		_c.addProgram( "IT", day, "VCS", Time( 21, 0, 0 ), Genre::Series, 4 );
+		
+		if ( day == Day::Friday )
+			_c.addProgram( "IT", Day::Friday, "Pizza & Beer", Time( 22, 0, 0 ), Genre::Sport, 5 );		
 	}
-	_c.addProgram( "IT", Day::Friday, "Pizza & Beer", Time( 22, 0, 0 ), Genre::Sport, 5 );
 }
 
 
