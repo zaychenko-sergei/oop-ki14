@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Model">
+      <UniqueIdentifier>{1b444b21-53a5-499a-8c9e-2970460f0505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Controller">
+      <UniqueIdentifier>{d4a76bfc-bdd4-4998-b75b-7148bed0cd20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Test">
+      <UniqueIdentifier>{234b2715-ae8e-4337-8df1-4a4f4b17cca2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="controller.cpp">
+      <Filter>Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="waterconsumer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="countingwaterconsumer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="standardwaterconsumer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="subsidizedwaterconsumer.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="test.cpp">
+      <Filter>Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="controller.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="messages.hpp">
+      <Filter>Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="waterconsumer.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="countingwaterconsumer.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="standardwaterconsumer.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="subsidizedwaterconsumer.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="constants.hpp">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="testslib.hpp">
+      <Filter>Test</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
