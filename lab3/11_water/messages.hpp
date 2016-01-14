@@ -1,4 +1,4 @@
-// (C) 2013-2015, Sergei Zaychenko, KNURE, Kharkiv, Ukraine
+// (C) 2013-2014, Sergei Zaychenko, KNURE, Kharkiv, Ukraine
 
 #ifndef _MESSAGES_HPP_
 #define _MESSAGES_HPP_
@@ -18,6 +18,8 @@ namespace Messages
 	const char * const NonPositiveConsumption     = "The amount of consumed water should be positive";
 	const char * const NegativePrice              = "Price may not be negative";
 	const char * const SubsidizedConsumersDontPay = "Subsidized consumer should not pay any money for the water";
+	const char * const NonPositiveUsersCount      = "Only positive value of users number allowed";
+	const char * const NonPositivePaymentAmount   = "Only positive value for payment allowed";
 
 /*-----------------------------------------------------------------*/
 
